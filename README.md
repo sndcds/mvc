@@ -15,34 +15,30 @@ First try to write our own MVC in JavaScript.
 ### Example
 
 ```
-// Create the model.
-const model = new Model()
-
-// Create a view, in this case without a specific <div> connected.
+const model = new AppModel()
 const view = new View()
-
-// Create some components.
-const c1 = new Component(view, 'container1')
-const c2 = new Component(view, 'container2')
-new Component(c1, 'text')
-new Component(c1, 'button')
-
-// Create more components in a loop.
-for (let i = 1; i <= 8; i++) {
-    new MyComponent(c2, 'component-' + i)
+const containerA = new Component(view, 'containerA')
+const containerB = new Component(view, 'containerB')
+const containerC = new Component(view, 'containerC')
+new Component(containerA, 'button1')
+new Component(containerB, 'button2')
+new Component(containerB, 'button3')
+for (let i = 0; i < 9; i++) {
+    new TestComponent(containerC, 'component-' + i)
 }
 
-// Create the controller.
-const app = new Controller(model, view)
+const app = new App(model, view)
+app.init('./details.json', 1)
 
-// Activate the view.
-view.create()
-
-// Tell view, that all components must be updated.
-view.needsUpdateAll()
-
-// Send a message to all component.
+app.buildView('root')
 app.sendMessage("Hello Component")
+app.sendMessageToComponent('button3', "News")
+app.updateProperties('component-4', '{"color": "#048", "width": 100, "flag": true }')
+app.updateProperties('component-6', '{"color": "#965", "width": 100, "flag": true }')
+app.updateProperties('component-987', '{"color": "#a93", "width": 100, "flag": true }')
+
+const c = app.componentById('component-3')
+console.log(c.id)
 ```
 
 

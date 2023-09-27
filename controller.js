@@ -16,6 +16,12 @@ export default class Controller {
     }
 
 
+    componentById(id) {
+        return this.view.componentById(id)
+    }
+
+
+
     fetchApiData = (url) => {
         // Make an API request using fetch or XMLHttpRequest.
         fetch(url)
