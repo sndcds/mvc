@@ -29,4 +29,16 @@ export default class App extends Controller {
             // this.onDataChanged(this.data)    // TODO
         }
     }
+
+
+    onDataChanged = (data) => {
+        this.model.setDataObject(data)
+        this.model.setDistrictObject(this.model.districtId)
+        // this.view.renderDataLoading(this.model.data)
+    }
+
+    onDistrictChanged = (id) => {
+        this.model.setDistrictId(id + 1)
+        this.model.setDistrictObject(id + 1)
+    }
 }
