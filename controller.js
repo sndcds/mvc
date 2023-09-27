@@ -50,10 +50,9 @@ export default class Controller {
     }
 
     updateProperties(componentId, json) {
-        const jsonObject = JSON.parse(json);
         let component = this.view.componentById(componentId)
         if (typeof component === 'object') {
-            component.consumeJsonObject(jsonObject)
+            component.consumeJsonObject(json)
         }
     }
 }
