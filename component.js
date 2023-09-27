@@ -31,7 +31,7 @@ export default class Component {
     // This method has to be overriden by derived classes.
     create() {
         if (this.parent) {
-            this.e = document.createElement("div")
+            this.e = this.domCreateElement("div");  // TODO: document.createElement("div")  // implement helper in view
             console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e);
 //            this.e.className = "testclass";
@@ -63,4 +63,27 @@ export default class Component {
         })
     }
 
+
+    // Helper classes
+
+    // Create an element with an optional CSS class.
+    domCreateElement(tag, className) {  // TODO: Can this be declared as static?
+        const element = document.createElement(tag)
+        if (className) {
+            element.classList.add(className)
+        }
+        return element
+    }
+
+
+    // Remove an element from the DOM.
+    domRemoveElement(element) { // TODO: Can this be declared as static?
+        element.parentNode.removeChild(element)
+    }
+
+
+    // Retrieve an element from the DOM.
+    domGetElement(selector) {   // TODO: Can this be declared as static?
+        return document.querySelector(selector)
+    }
 }
