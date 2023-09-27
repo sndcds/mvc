@@ -1,6 +1,5 @@
 import AppModel from './appModel.js'
 import View from './view.js'
-import Controller from './controller.js'
 import Component from './component.js'
 import TestComponent from './testcomponent.js'
 import App from './app.js'
