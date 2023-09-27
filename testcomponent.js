@@ -11,7 +11,7 @@ export default class TestComponent extends Component {
         console.log("receiveMessage id:" + this.id + ", e:" + this.e)
         if (this.e) {
             if (this.childs.length < 1)
-                this.e.innerHTML = '<p>' + message + '<p>';
+                this.e.innerHTML = '<p>' + this.id + '<p>';
             this.e.style.backgroundColor = '#88a';
         }
 

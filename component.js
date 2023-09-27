@@ -18,7 +18,7 @@ export default class Component {
         console.log("receiveMessage id:" + this.id + ", e:" + this.e)
         if (this.e) {
             if (this.childs.length < 1)
-                this.e.innerHTML = '<h1>' + message + '</h1>';
+                this.e.innerHTML = '<h1>' + message + ', ' + this.id + '</h1>';
             this.e.style.backgroundColor = '#f8a';
         }
 
