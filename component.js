@@ -15,7 +15,6 @@ export default class Component {
 
     // Receives a message and forces descendants to receive it.
     receiveMessage(message) {
-        console.log("receiveMessage id:" + this.id + ", e:" + this.e)
         if (this.e) {
             if (this.childs.length < 1)
                 this.e.innerHTML = '<h1>' + message + ', ' + this.id + '</h1>';
@@ -32,7 +31,7 @@ export default class Component {
     create() {
         if (this.parent) {
             this.e = this.domCreateElement("div");
-            console.log("create id:" + this.id + ", e:" + this.e)
+            // console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e);
 //            this.e.className = "testclass";
 //            if (this.id == "chartA")
@@ -49,6 +48,23 @@ export default class Component {
     }
 
 
+    getComponentById(id) {
+        if (id === this.id) {
+            return this
+        }
+
+        let component = undefined
+        this.childs.every(child => {
+            component = child.getComponentById(id)
+            if (typeof component === 'object' && component.id === id) {
+                return false
+            }
+            return true
+        })
+        return component
+    }
+
+
     // Tell component and all descendants, that they need to update.
     needsUpdateAll(data) {
         this.e.innerHtml = 'hello';
@@ -62,6 +78,16 @@ export default class Component {
             child.needsUpdateAll(data)
         })
     }
+
+
+
+
+
+
+    bindEventHandler(eventType, handler) {
+        // Prototyp, does nothing.
+    }
+
 
 
     // Helper classes

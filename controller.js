@@ -26,4 +26,9 @@ export default class Controller {
     sendMessage(message) {
         this.view.receiveMessage(message)
     }
+
+
+    updateProperties(id, json) {
+
+    }
 }

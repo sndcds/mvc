@@ -8,7 +8,6 @@ export default class TestComponent extends Component {
     }
 
     receiveMessage(message) {
-        console.log("receiveMessage id:" + this.id + ", e:" + this.e)
         if (this.e) {
             if (this.childs.length < 1)
                 this.e.innerHTML = '<p>' + this.id + '<p>';
@@ -23,7 +22,7 @@ export default class TestComponent extends Component {
     create() {
         if (this.parent) {
             this.e = this.domCreateElement("p");
-            console.log("create id:" + this.id + ", e:" + this.e)
+            // console.log("create id:" + this.id + ", e:" + this.e)
             this.e.style.backgroundColor = "#ff0"
             this.parent.e.appendChild(this.e);
 //            this.e.className = "testclass";

@@ -13,8 +13,6 @@ export default class App extends Controller {
         this.data = this.model.getStorage('data')
         this.districtId = this.model.getStorage('districtId')
 
-        console.log("...model: " + this.model)
-
         if (this.districtId === null) {
             this.model.setDistrictId(id)
         }

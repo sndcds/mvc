@@ -34,4 +34,5 @@ export default class AppModel extends Model {
             this.districtObject = items[0]
             this.setStorage('districtObject', items[0])
         }
-    }}
+    }
+}
