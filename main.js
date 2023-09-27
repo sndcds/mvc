@@ -42,9 +42,3 @@ app.updateProperties('component-987', {"color": "#a93", "width": 100, "flag": tr
 
 const c = app.componentById('component-3')
 console.log(c.id)
-
-/*
-// Fetch data from the API when the application starts.
-const apiUrl = './details.json'
-app.fetchApiData(apiUrl)
-*/
