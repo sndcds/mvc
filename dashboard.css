@@ -1,5 +1,6 @@
 html, body {
     font-family: sans-serif;
+    margin: 0;
 }
 
 canvas {
@@ -35,12 +36,12 @@ canvas {
 
 ._3of4 {
     flex: 0 0 calc(75% - 10px);
-    background-color: #red;
+    background-color: red;
 }
 
 ._1of4 {
     flex: 0 0 calc(25% - 10px);
-    background-color: #yellow;
+    background-color: yellow;
 }
 
 .item {
@@ -80,6 +81,30 @@ canvas {
     background-color: #59e;
     border-radius: 4px;
 }
+
+div {
+    background-color: #ccc;
+    padding: 10px;
+}
+
+div div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 9px;
+}
+
+div div div {
+    background-color: #ddd;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+div div div:hover {
+    background-color: #cf0;
+}
+
 
 @media (max-width: 900px) {
     .item {
