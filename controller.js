@@ -10,7 +10,6 @@ export default class Controller {
         this.view = view
     }
 
-
     fetchApiData = (url) => {
         // Make an API request using fetch or XMLHttpRequest.
         fetch(url)
