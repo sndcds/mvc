@@ -9,9 +9,9 @@ export default class DistrictSelectComponent extends Component {
 
 
     create() {
-        this.e = this.domCreateElement("select");
-        this.parent.e.appendChild(this.e);
-        this.createChilds();
+        this.e = this.domCreateElement("select")
+        this.parent.e.appendChild(this.e)
+        this.buildChilds()
     }
 
 

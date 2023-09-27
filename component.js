@@ -13,49 +13,36 @@ export default class Component {
         }
     }
 
-    // Receives a message and forces descendants to receive it.
-    receiveMessage(message) {
-        if (this.e) {
-            if (this.childs.length < 1)
-                this.e.innerHTML = '<h1>' + message + ', ' + this.id + '</h1>';
-            this.e.style.backgroundColor = '#f8a';
-        }
 
-        this.childs.forEach(item => {
-            item.receiveMessage(message);
-        })
-    }
-
-    // Creates the DOM element(s).
+    // Build the DOM element(s).
     // This method has to be overriden by derived classes.
-    create() {
+    build() {
         if (this.parent) {
-            this.e = this.domCreateElement("div");
+            this.e = this.domCreateElement("div")
             // console.log("create id:" + this.id + ", e:" + this.e)
-            this.parent.e.appendChild(this.e);
+            this.parent.e.appendChild(this.e)
 //            this.e.className = "testclass";
 //            if (this.id == "chartA")
 //                this.e.className = "testclass2";
         }
-        this.createChilds();
+        this.buildChilds()
     }
 
-    // Creates all descendants.
-    createChilds() {
+    // Build all descendants.
+    buildChilds() {
         this.childs.forEach(child => {
-            child.create()
+            child.build()
         })
     }
 
-
-    getComponentById(id) {
+    componentById(id) {
         if (id === this.id) {
             return this
         }
 
         let component = undefined
         this.childs.every(child => {
-            component = child.getComponentById(id)
+            component = child.componentById(id)
             if (typeof component === 'object' && component.id === id) {
                 return false
             }
@@ -72,6 +59,7 @@ export default class Component {
         this.needsUpdateAllChilds(data)
     }
 
+
     // Tell all descendants, that they need to update.
     needsUpdateAllChilds(data) {
         this.childs.forEach(child => {
@@ -80,15 +68,31 @@ export default class Component {
     }
 
 
-
-
-
-
     bindEventHandler(eventType, handler) {
         // Prototyp, does nothing.
     }
 
 
+    // Receives a message and forces descendants to receive it.
+    consumeMessage(message) {
+        if (this.e) {
+            if (this.childs.length < 1)
+                this.e.innerHTML = '<h2>' + message + '</h2><p>' + this.id + '</p>';
+            this.e.style.backgroundColor = '#f8a';
+        }
+
+        this.childs.forEach(item => {
+            item.consumeMessage(message)
+        })
+    }
+
+
+    consumeJsonObject(jsonObject) {
+        // console.log(jsonObject)
+        if (this.e) {
+            this.e.style.backgroundColor = jsonObject.color;
+        }
+    }
 
     // Helper classes
 

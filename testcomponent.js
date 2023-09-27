@@ -7,7 +7,7 @@ export default class TestComponent extends Component {
         super(parent, id, dataSrc)
     }
 
-    receiveMessage(message) {
+    consumeMessage(message) {
         if (this.e) {
             if (this.childs.length < 1)
                 this.e.innerHTML = '<p>' + this.id + '<p>';
@@ -15,20 +15,20 @@ export default class TestComponent extends Component {
         }
 
         this.childs.forEach(item => {
-            item.receiveMessage(message);
+            item.consumeMessage(message)
         })
     }
 
     create() {
         if (this.parent) {
-            this.e = this.domCreateElement("p");
+            this.e = this.domCreateElement("p")
             // console.log("create id:" + this.id + ", e:" + this.e)
             this.e.style.backgroundColor = "#ff0"
-            this.parent.e.appendChild(this.e);
+            this.parent.e.appendChild(this.e)
 //            this.e.className = "testclass";
 //            if (this.id == "chartA")
 //                this.e.className = "testclass2";
         }
-        this.createChilds();
+        this.buildChilds()
     }
 }

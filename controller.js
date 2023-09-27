@@ -10,6 +10,12 @@ export default class Controller {
         this.view = view
     }
 
+
+    buildView(elementId) {
+        this.view.build(elementId)
+    }
+
+
     fetchApiData = (url) => {
         // Make an API request using fetch or XMLHttpRequest.
         fetch(url)
@@ -23,12 +29,25 @@ export default class Controller {
         })
     }
 
+
+
     sendMessage(message) {
-        this.view.receiveMessage(message)
+        this.view.consumeMessage(message)
     }
 
+    sendMessageToComponent(componentId, message) {
+        let component = this.view.componentById(componentId)
+        if (typeof component === 'object') {
+            component.consumeMessage(message)
+        }
 
-    updateProperties(id, json) {
+    }
 
+    updateProperties(componentId, json) {
+        const jsonObject = JSON.parse(json);
+        let component = this.view.componentById(componentId)
+        if (typeof component === 'object') {
+            component.consumeJsonObject(jsonObject)
+        }
     }
 }
