@@ -45,5 +45,3 @@ app.updateProperties('component-987', '{"color": "#a93", "width": 100, "flag": t
 const c = app.componentById('component-3')
 console.log(c.id)
 ```
-
-
