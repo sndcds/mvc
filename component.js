@@ -31,7 +31,7 @@ export default class Component {
     // This method has to be overriden by derived classes.
     create() {
         if (this.parent) {
-            this.e = this.domCreateElement("div");  // TODO: document.createElement("div")  // implement helper in view
+            this.e = this.domCreateElement("div");
             console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e);
 //            this.e.className = "testclass";
