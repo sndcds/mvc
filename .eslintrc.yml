@@ -4,7 +4,7 @@ env:
 
 extends:
   - eslint:recommended
- 
+
 parserOptions:
   ecmaVersion": latest
   sourceType: module
@@ -30,12 +30,17 @@ rules:
 
   block-scoped-var: error
   block-spacing: error
-  brace-style: error
+  brace-style:
+    - error
+    - stroustrup
+
   comma-dangle:
     - error
-    - arrays: always-multiline
-      objects: always-multiline
-      functions: always-multiline
+    - arrays: never
+      objects: never
+      imports: never
+      exports: never
+      functions: never
 
   comma-spacing:
     - error

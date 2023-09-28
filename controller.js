@@ -37,20 +37,19 @@ export default class Controller {
         }
     }
 
-    fetchData = (url) => {
+    fetchData(url) {
         // Make an API request using fetch or XMLHttpRequest
         fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            // Update the model with the fetched data
-            this.onDataChanged(data)
-          })
-          .catch((error) => {
-            console.error('Error fetching data:', error)
-          })
-     }
+            .then((response) => response.json())
+            .then((data) => {
+                // Update the model with the fetched data
+                this.onDataChanged(data)
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error)
+            })
+    }
 
-     onDataChanged = (data) => {
-     }
-
+    onDataChanged(data) {
+    }
 }

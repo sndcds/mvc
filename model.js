@@ -1,8 +1,7 @@
 export default class Model {
+    /* eslint no-useless-constructor: 0 */
     constructor() {
     }
-
-    // Helper
 
     getStorage(key) {
         return JSON.parse(localStorage.getItem(key))

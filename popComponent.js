@@ -25,20 +25,27 @@ export default class PopComponent extends Component {
         this.barColor2 = '#333'
 
         if (setupData !== undefined) {
-            if (setupData.label !== undefined)
+            if (setupData.label !== undefined) {
                 this.label = setupData.label
-            if (setupData.value !== undefined)
+            }
+            if (setupData.value !== undefined) {
                 this.value = setupData.value
-            if (setupData.percentage !== undefined)
+            }
+            if (setupData.percentage !== undefined) {
                 this.percentage = setupData.percentage
-            if (setupData.barOffset !== undefined)
+            }
+            if (setupData.barOffset !== undefined) {
                 this.barOffset = setupData.barOffset
-            if (setupData.barSize !== undefined)
+            }
+            if (setupData.barSize !== undefined) {
                 this.barSize = setupData.barSize
-            if (setupData.barColor1 !== undefined)
+            }
+            if (setupData.barColor1 !== undefined) {
                 this.barColor1 = setupData.barColor1
-            if (setupData.barColor2 !== undefined)
+            }
+            if (setupData.barColor2 !== undefined) {
                 this.barColor2 = setupData.barColor2
+            }
         }
     }
 
@@ -69,10 +76,10 @@ export default class PopComponent extends Component {
         const color1 = this.barColor1
         const color2 = this.barColor2
         const spot1 = `${this.barOffset}%`
-        const spot2 = `${(this.barOffset + 0.1)}%`
-        const spot3 = `${(this.barOffset + this.barSize - 0.1)}%`
-        const spot4 = `${(this.barOffset + this.barSize)}%`
-        const gradient = `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}, ${color2} ${spot2}, ${color2} ${spot3}, ${color1} ${spot4})`; // "Hello World"
+        const spot2 = `${this.barOffset + 0.1}%`
+        const spot3 = `${this.barOffset + this.barSize - 0.1}%`
+        const spot4 = `${this.barOffset + this.barSize}%`
+        const gradient = `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}, ${color2} ${spot2}, ${color2} ${spot3}, ${color1} ${spot4})`
         // console.log(gradient)
 
         a = this.e.appendChild(this.domCreateElement('div'))

@@ -1,0 +1,72 @@
+html, body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.grid {
+    padding: 20px;
+}
+
+.pop {
+    display: 'grid';
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.popLabel {
+    font-size: 0.8em;
+    padding: 8px 0;
+}
+
+.popValue {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.popBar {
+    height: 10px;
+    border-radius: 4px;
+}
+
+.popPercentage {
+    font-size: 0.8em;
+    padding: 8px 0;
+}
+
+.xyz_pop {
+    display: 'grid';
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    color: #333;
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+.xyz_pop:hover {
+    background-color: #000;
+    color: #999;
+}
+
+.xyz_popLabel {
+    font-size: 0.8em;
+    padding: 8px 0;
+}
+
+.xyz_popValue {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.xyz_popBar {
+    height: 20px;
+    border-radius: 4px;
+}
+
+.xyz_popPercentage {
+    font-size: 0.8em;
+    padding: 8px 0;
+}

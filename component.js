@@ -15,8 +15,9 @@ export default class Component {
         this.classPrefix = undefined
 
         if (setupData !== undefined) {
-            if (setupData.classPrefix !== undefined)
+            if (setupData.classPrefix !== undefined) {
                 this.classPrefix = setupData.classPrefix
+            }
         }
     }
 
@@ -24,7 +25,7 @@ export default class Component {
     // This method has to be overriden by derived classes.
     build() {
         if (this.parent) {
-            this.e = this.domCreateElement("div")
+            this.e = this.domCreateElement('div')
             // console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e)
         }
@@ -33,7 +34,7 @@ export default class Component {
 
     // Build all descendants.
     buildChilds() {
-        this.childs.forEach(child => {
+        this.childs.forEach((child) => {
             child.build()
         })
     }
@@ -43,8 +44,8 @@ export default class Component {
             return this
         }
 
-        let component = undefined
-        this.childs.every(child => {
+        let component
+        this.childs.every((child) => {
             component = child.componentById(id)
             if (typeof component === 'object' && component.id === id) {
                 return false
@@ -63,12 +64,13 @@ export default class Component {
     // Receives a message and forces descendants to receive it.
     setMessage(message) {
         if (this.e) {
-            if (this.childs.length < 1)
+            if (this.childs.length < 1) {
                 this.e.innerHTML = `<h2>'${message}'</h2><p>'${this.id}'</p>`
-            this.e.style.backgroundColor = '#f8a';
+            }
+            this.e.style.backgroundColor = '#f8a'
         }
 
-        this.childs.forEach(item => {
+        this.childs.forEach((item) => {
             item.setMessage(message)
         })
     }
@@ -77,7 +79,7 @@ export default class Component {
     setProperties(data) {
         // console.log(jsonObject)
         if (this.e) {
-            this.e.style.backgroundColor = data.color;
+            this.e.style.backgroundColor = data.color
         }
     }
 
@@ -106,8 +108,8 @@ export default class Component {
 
 
     prefixedClassName(className) {
-        if (this.classPrefix != undefined) {
-            return this.classPrefix + '_' + className   // TODO: ES6 literal
+        if (this.classPrefix !== undefined) {
+            return `${this.classPrefix}_${className}`   // TODO: ES6 literal
         }
         else {
             return className
