@@ -31,10 +31,10 @@ export default class DistrictSelectComponent extends Component {
         this.e.appendChild(selectElement)
     }
 
-    bindDistrictChanged(eventType, handler) {
-        // TODO: Is this to be used?
-        this.e.addEventListener(eventType, (event) => {
-            const selectedOption = this.e.value
+    bindDistrictChanged(handler) {
+        const e = this.e.children.item(0)
+        e.addEventListener('change', (event) => {
+            const selectedOption = e.value
             handler(selectedOption - 1)
         })
     }

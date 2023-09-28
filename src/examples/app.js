@@ -7,6 +7,8 @@ export default class App extends Controller {
     /* eslint no-useless-constructor: 0 */
     constructor(model, view) {
         super(model, view)
+
+        this.onDistrictChanged = this.onDistrictChanged.bind(this)  // TODO: Description!
     }
 
     initApp(url, id) {
@@ -28,13 +30,7 @@ export default class App extends Controller {
         }
     }
 
-    onDataChanged(data) {
-        this.model.setDataObject(data)
-        this.model.setDistrictObject(this.model.districtId)
-
-        const temp = {'data': this.model.data, 'districtId': this.model.districtId}
-        this.setProperties('districtSelect', temp)
-
+    renderAgeSection() {
         const items = [
             {'id': 'ageView1', 'path': ['district_detail', '2021', 'age_groups', 'age_to_under_18']},
             {'id': 'ageView2', 'path': ['district_detail', '2021', 'age_groups', 'age_18_to_under_30']},
@@ -53,8 +49,22 @@ export default class App extends Controller {
         })
     }
 
+    onDataChanged(data) {
+        this.model.setDataObject(data)
+        this.model.setDistrictObject(this.model.districtId)
+
+        const d = {'data': this.model.data, 'districtId': this.model.districtId}
+        this.setProperties('districtSelect', d)
+        const c = this.componentById('districtSelect')
+        c.bindDistrictChanged(this.onDistrictChanged)
+
+        this.renderAgeSection()
+    }
+
     onDistrictChanged(id) {
         this.model.setDistrictId(id + 1)
         this.model.setDistrictObject(id + 1)
+
+        this.renderAgeSection()
     }
 }
