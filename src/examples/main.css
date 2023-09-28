@@ -40,14 +40,13 @@ html, body {
     grid-template-rows: 1fr 1fr 1fr 1fr;
     color: #333;
     padding: 4px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #ddd;
     transition: 0.2s;
 }
 
 .xyz_pop:hover {
-    background-color: #000;
-    color: #999;
+    border: 1px solid #000;
 }
 
 .xyz_popLabel {
@@ -63,7 +62,7 @@ html, body {
 
 .xyz_popBar {
     height: 20px;
-    border-radius: 4px;
+    border-radius: 12px;
 }
 
 .xyz_popPercentage {

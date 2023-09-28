@@ -55,11 +55,9 @@ export default class Component {
         return component
     }
 
-
     bindEventHandler(eventType, handler) {
         // Prototyp, does nothing.
     }
-
 
     // Receives a message and forces descendants to receive it.
     setMessage(message) {
@@ -75,15 +73,12 @@ export default class Component {
         })
     }
 
-
     setProperties(data) {
         // console.log(jsonObject)
         if (this.e) {
             this.e.style.backgroundColor = data.color
         }
     }
-
-    // Helper classes
 
     // Create an element with an optional CSS class.
     domCreateElement(tag, className) {  // TODO: Can this be declared as static?
@@ -94,12 +89,10 @@ export default class Component {
         return element
     }
 
-
     // Remove an element from the DOM.
     domRemoveElement(element) { // TODO: Can this be declared as static?
         element.parentNode.removeChild(element)
     }
-
 
     // Retrieve an element from the DOM.
     domGetElement(selector) {   // TODO: Can this be declared as static?

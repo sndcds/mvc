@@ -95,5 +95,6 @@ export default class PopComponent extends Component {
     }
 
     setProperties(data) {
+        this.e.children.item(1).innerText = data.value
     }
 }

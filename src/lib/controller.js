@@ -52,4 +52,32 @@ export default class Controller {
 
     onDataChanged(data) {
     }
+
+    formatNumberWithDot(x) {
+        if (typeof x === 'undefined') {
+            return x
+        }
+
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    }
+
+    hasAttribute(obj, attributeName) {
+        return typeof obj === 'object' && obj !== null && attributeName in obj
+    }
+
+    getNestedValue(data, path) {
+        let value = data
+
+        for (const key of path) {
+            if (this.hasAttribute(value, key)) {
+                value = value[key]
+            }
+            else {
+                value = undefined
+                break
+            }
+        }
+
+        return value
+    }
 }
