@@ -2,7 +2,7 @@ import View from './view.js'
 
 
 export default class Component {
-    constructor(parent, id, dataSrc) {
+    constructor(parent, id, setupData) {
         this.e = null           // The DOM element.
         this.id = id            // Identifier, a string.
         this.parent = parent    // The parent component, can be null if this is a root component.

@@ -34,8 +34,8 @@ new Component(chartB, 'button1')
 
 const chartC = new GridComponent(view, 'chartC')
 
-for (let i = 0; i < 2000; i++) {
-    new PopComponent(chartC, 'component-' + i)
+for (let i = 1; i <= 10; i++) {
+    new PopComponent(chartC, 'pop-' + i, {"Label": "Hallo", "Value": 123, "Percentage": 87.3, "BarOffset": 13.2, "BarColor1": "#d1e4fd", "BarColor2": "#0069f6"})
 }
 
 const app = new App(model, view)

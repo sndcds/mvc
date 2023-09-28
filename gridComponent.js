@@ -2,8 +2,8 @@ import Component from './component.js'
 
 
 export default class GridComponent extends Component {
-    constructor(parent, id, dataSrc) {
-        super(parent, id, dataSrc)
+    constructor(parent, id, setupData) {
+        super(parent, id, setupData)
     }
 
     build() {
