@@ -34,3 +34,29 @@ html, body {
     font-size: 0.8em;
     padding: 8px 0;
 }
+
+.xyz_pop {
+    display: 'grid';
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.xyz_popLabel {
+    font-size: 0.8em;
+    padding: 8px 0;
+}
+
+.xyz_popValue {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.xyz_popBar {
+    height: 20px;
+    border-radius: 4px;
+}
+
+.xyz_popPercentage {
+    font-size: 0.8em;
+    padding: 8px 0;
+}

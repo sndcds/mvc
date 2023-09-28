@@ -10,6 +10,13 @@ export default class Component {
         if (parent) {
             parent.childs.push(this)
         }
+
+        this.classPrefix = undefined
+
+        if (setupData !== undefined) {
+            if (setupData.classPrefix !== undefined)
+                this.classPrefix = setupData.classPrefix
+        }
     }
 
     // Build the DOM element(s).
@@ -97,5 +104,15 @@ export default class Component {
     // Retrieve an element from the DOM.
     domGetElement(selector) {   // TODO: Can this be declared as static?
         return document.querySelector(selector)
+    }
+
+
+    prefixedClassName(className) {
+        if (this.classPrefix != undefined) {
+            return this.classPrefix + '_' + className
+        }
+        else {
+            return className
+        }
     }
 }

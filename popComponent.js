@@ -25,20 +25,20 @@ export default class PopComponent extends Component {
         this.barColor2 = '#333'
 
         if (setupData !== undefined) {
-            if (setupData.Label !== undefined)
-                this.label = setupData.Label
-            if (setupData.Value !== undefined)
-                this.value = setupData.Value
-            if (setupData.Percentage !== undefined)
-                this.percentage = setupData.Percentage
-            if (setupData.BarOffset !== undefined)
-                this.barOffset = setupData.BarOffset
-            if (setupData.BarSize !== undefined)
-                this.barSize = setupData.BarSize
-            if (setupData.BarColor1 !== undefined)
-                this.barColor1 = setupData.BarColor1
-            if (setupData.BarColor2 !== undefined)
-                this.barColor2 = setupData.BarColor2
+            if (setupData.label !== undefined)
+                this.label = setupData.label
+            if (setupData.value !== undefined)
+                this.value = setupData.value
+            if (setupData.percentage !== undefined)
+                this.percentage = setupData.percentage
+            if (setupData.barOffset !== undefined)
+                this.barOffset = setupData.barOffset
+            if (setupData.barSize !== undefined)
+                this.barSize = setupData.barSize
+            if (setupData.barColor1 !== undefined)
+                this.barColor1 = setupData.barColor1
+            if (setupData.barColor2 !== undefined)
+                this.barColor2 = setupData.barColor2
         }
     }
 
@@ -53,17 +53,17 @@ export default class PopComponent extends Component {
     build() {
         this.e = this.domCreateElement('div')
         this.parent.e.appendChild(this.e)
-        this.e.className = 'pop'
+        this.e.className = this.prefixedClassName('pop')
 
         let a = this.e.appendChild(this.domCreateElement('div'))
         a.style.textAlign = 'center'
         a.innerText = this.label
-        a.className = 'popLabel'
+        a.className = this.prefixedClassName('popLabel')
 
         a = this.e.appendChild(this.domCreateElement('div'))
         a.style.textAlign = 'center'
         a.innerText = this.value
-        a.className = 'popValue'
+        a.className = this.prefixedClassName('popValue')
 
 
         const color1 = this.barColor1
@@ -78,11 +78,11 @@ export default class PopComponent extends Component {
         a = this.e.appendChild(this.domCreateElement('div'))
         a.style.textAlign = 'left'
         a.style.background = gradient
-        a.className = 'popBar'
+        a.className = this.prefixedClassName('popBar')
         a = this.e.appendChild(this.domCreateElement('div'))
         a.style.textAlign = 'center'
         a.innerText = this.percentage + " %"
-        a.className = 'popPercentage'
+        a.className = this.prefixedClassName('popPercentage')
 
         this.buildChilds()
     }
