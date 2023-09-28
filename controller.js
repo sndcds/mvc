@@ -22,7 +22,7 @@ export default class Controller {
     }
 
     sendMessageToComponent(componentId, message) {
-        let component = this.view.componentById(componentId)
+        const component = this.view.componentById(componentId)
 
         if (typeof component === 'object') {
             component.setMessage(message)
@@ -30,7 +30,7 @@ export default class Controller {
     }
 
     setProperties(componentId, data) {
-        let component = this.view.componentById(componentId)
+        const component = this.view.componentById(componentId)
 
         if (typeof component === 'object') {
             component.setProperties(data)

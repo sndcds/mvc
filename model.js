@@ -1,8 +1,6 @@
 export default class Model {
-
     constructor() {
     }
-
 
     // Helper
 

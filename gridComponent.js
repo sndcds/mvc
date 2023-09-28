@@ -10,8 +10,8 @@ export default class GridComponent extends Component {
         this.e = this.domCreateElement('div')
         this.parent.e.appendChild(this.e)
         this.e.style.display = 'grid'
-        this.e.style.gridTemplateColumns = 'repeat(8, 1fr)';
-        this.e.style.gridGap = '12px';
+        this.e.style.gridTemplateColumns = 'repeat(8, 1fr)'
+        this.e.style.gridGap = '12px'
         this.e.style.borderRadius = '20px'
         this.e.className = 'grid'
 

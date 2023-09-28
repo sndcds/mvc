@@ -1,7 +1,6 @@
 import View from './view.js'
 import Controller from './controller.js'
 import Component from './component.js'
-//import TestComponent from './testcomponent.js'
 
 
 export default class App extends Controller {

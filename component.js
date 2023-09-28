@@ -7,6 +7,7 @@ export default class Component {
         this.id = id            // Identifier, a string.
         this.parent = parent    // The parent component, can be null if this is a root component.
         this.childs = []        // Array with the cilds of this component.
+
         if (parent) {
             parent.childs.push(this)
         }
@@ -26,9 +27,6 @@ export default class Component {
             this.e = this.domCreateElement("div")
             // console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e)
-//            this.e.className = "testclass";
-//            if (this.id == "chartA")
-//                this.e.className = "testclass2";
         }
         this.buildChilds()
     }
@@ -66,7 +64,7 @@ export default class Component {
     setMessage(message) {
         if (this.e) {
             if (this.childs.length < 1)
-                this.e.innerHTML = '<h2>' + message + '</h2><p>' + this.id + '</p>';
+                this.e.innerHTML = `<h2>'${message}'</h2><p>'${this.id}'</p>`
             this.e.style.backgroundColor = '#f8a';
         }
 
@@ -109,7 +107,7 @@ export default class Component {
 
     prefixedClassName(className) {
         if (this.classPrefix != undefined) {
-            return this.classPrefix + '_' + className
+            return this.classPrefix + '_' + className   // TODO: ES6 literal
         }
         else {
             return className

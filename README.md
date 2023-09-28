@@ -3,7 +3,7 @@ First try to write our own MVC in JavaScript.
 
 ### Basic functionality
 
-- Create one or more views related to <div> elements in your HTML using their id attributes.
+- Create one or more views related to `<div>` elements in your HTML using their id attributes.
 - Create components in a tree hierarchy.
 - Send messages to views and components.
 
@@ -27,7 +27,7 @@ new Component(containerB, 'button2')
 new Component(containerB, 'button3')
 
 for (let i = 0; i < 9; i++) {
-    new TestComponent(containerC, 'component-' + i)
+    new TestComponent(containerC, `component-${i}`)
 }
 
 const app = new App(model, view)
@@ -38,9 +38,9 @@ app.buildView('root')
 app.sendMessage("Hello Component")
 app.sendMessageToComponent('button3', "News")
 
-app.setProperties('component-4', '{"color": "#048", "width": 100, "flag": true }')
-app.setProperties('component-6', '{"color": "#965", "width": 100, "flag": true }')
-app.setProperties('component-987', '{"color": "#a93", "width": 100, "flag": true }')
+app.setProperties('component-4', {"color": "#048", "width": 100, "flag": true })
+app.setProperties('component-6', {"color": "#965", "width": 100, "flag": true })
+app.setProperties('component-987', {"color": "#a93", "width": 100, "flag": true })
 
 const c = app.componentById('component-3')
 console.log(c.id)

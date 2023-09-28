@@ -4,7 +4,7 @@ import Component from './component.js'
 
 export default class PopComponent extends Component {
     /**
-     * Component for displaying a laben, value, bar an percetage.
+     * Component for displaying a label, value, bar an percentage.
      *
      * Can be used for displaying numeric information, i. e. of statistics and other number related contexts.
      *
@@ -12,7 +12,7 @@ export default class PopComponent extends Component {
      *
      * @param {Component}   parent      The parent component.
      * @param {String}      id          The id of the new Component.
-     * @param {any}         date        An optionam data information.
+     * @param {any}         setupData   Optional set up data.
      */
     constructor(parent, id, setupData) {
         super(parent, id, setupData)
@@ -68,10 +68,10 @@ export default class PopComponent extends Component {
 
         const color1 = this.barColor1
         const color2 = this.barColor2
-        const spot1 = this.barOffset + '%'
-        const spot2 = (this.barOffset + 0.1) + '%'
-        const spot3 = (this.barOffset + this.barSize - 0.1) + '%'
-        const spot4 = (this.barOffset + this.barSize) + '%'
+        const spot1 = `${this.barOffset}%`
+        const spot2 = `${(this.barOffset + 0.1)}%`
+        const spot3 = `${(this.barOffset + this.barSize - 0.1)}%`
+        const spot4 = `${(this.barOffset + this.barSize)}%`
         const gradient = `linear-gradient(90deg, ${color1} 0%, ${color1} ${spot1}, ${color2} ${spot2}, ${color2} ${spot3}, ${color1} ${spot4})`; // "Hello World"
         // console.log(gradient)
 
@@ -81,7 +81,7 @@ export default class PopComponent extends Component {
         a.className = this.prefixedClassName('popBar')
         a = this.e.appendChild(this.domCreateElement('div'))
         a.style.textAlign = 'center'
-        a.innerText = this.percentage + " %"
+        a.innerText = `${this.percentage} %`
         a.className = this.prefixedClassName('popPercentage')
 
         this.buildChilds()

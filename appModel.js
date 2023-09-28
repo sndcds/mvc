@@ -2,7 +2,6 @@ import Model from './model.js'
 
 
 export default class AppModel extends Model {
-
     constructor() {
         super()
         this.data = null
@@ -12,7 +11,7 @@ export default class AppModel extends Model {
     }
 
     bindDataChanged(callback) {
-        // this.onDataChanged = callback
+        this.onDataChanged = callback
     }
 
     setDataObject(data) {
