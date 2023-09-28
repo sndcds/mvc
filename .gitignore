@@ -1,3 +1,12 @@
 node_modules/
+.parcel-cache/
+dist/
 .DS_Store
 .env
+.idea
+*.suo
+*.local
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

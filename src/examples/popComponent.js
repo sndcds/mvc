@@ -1,4 +1,4 @@
-import Component from './component.js'
+import Component from '../lib/component.js'
 
 // Comp
 

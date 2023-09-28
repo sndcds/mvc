@@ -1,4 +1,4 @@
-import Model from './model.js'
+import Model from '../lib/model.js'
 
 
 export default class AppModel extends Model {
