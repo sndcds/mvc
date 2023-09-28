@@ -38,6 +38,16 @@ html, body {
 .xyz_pop {
     display: 'grid';
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    color: #333;
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+.xyz_pop:hover {
+    background-color: #000;
+    color: #999;
 }
 
 .xyz_popLabel {
