@@ -1,0 +1,37 @@
+name: Lint javascript files
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - dev
+      - main
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install lates nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install package manager
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run linting
+        run: pnpm lint
