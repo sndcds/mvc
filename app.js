@@ -4,6 +4,7 @@ import Component from './component.js'
 
 
 export default class App extends Controller {
+    /* eslint no-useless-constructor: 0 */
     constructor(model, view) {
         super(model, view)
     }
@@ -27,7 +28,7 @@ export default class App extends Controller {
         }
     }
 
-    onDataChanged = (data) => {
+    onDataChanged(data) {
         this.model.setDataObject(data)
         this.model.setDistrictObject(this.model.districtId)
 
@@ -35,7 +36,7 @@ export default class App extends Controller {
         this.setProperties('districtSelect', temp)
     }
 
-    onDistrictChanged = (id) => {
+    onDistrictChanged(id) {
         this.model.setDistrictId(id + 1)
         this.model.setDistrictObject(id + 1)
     }

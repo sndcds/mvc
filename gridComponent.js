@@ -2,6 +2,7 @@ import Component from './component.js'
 
 
 export default class GridComponent extends Component {
+    /* eslint no-useless-constructor: 0 */
     constructor(parent, id, setupData) {
         super(parent, id, setupData)
     }

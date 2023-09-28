@@ -26,7 +26,7 @@ export default class AppModel extends Model {
     }
 
     setDistrictObject(districtId) {
-        const condition = (district) => district.district_id == districtId
+        const condition = (district) => district.district_id === districtId
         const items = this.data.filter(condition)
 
         if (items.length > 0) {

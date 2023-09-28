@@ -12,10 +12,10 @@ import GridComponent from './gridComponent.js'
 
 
 function getRandomColor() {
-  const red = Math.floor(Math.random() * 256);
-  const green = Math.floor(Math.random() * 256);
-  const blue = Math.floor(Math.random() * 256);
-  return `rgb(${red}, ${green}, ${blue})`;
+    const red = Math.floor(Math.random() * 256)
+    const green = Math.floor(Math.random() * 256)
+    const blue = Math.floor(Math.random() * 256)
+    return `rgb(${red}, ${green}, ${blue})`
 }
 
 // Example usage
@@ -40,22 +40,22 @@ new Component(subView, 'button1')
 const container2 = new GridComponent(view, 'chartC')
 
 for (let i = 1; i <= 3; i++) {
-    new PopComponent(container2, 'pop-' + i, {"classPrefix": "xyz", "label": "Anzahl", "value": 123, "percentage": 87.3, "barOffset": 13.2, "barColor1": "#d1e4fd", "barColor2": "#0069f6"})
+    new PopComponent(container2, `pop-${i}`, {'classPrefix': 'xyz', 'label': 'Anzahl', 'value': 123, 'percentage': 87.3, 'barOffset': 13.2, 'barColor1': '#d1e4fd', 'barColor2': '#0069f6'})
 }
 
 for (let i = 4; i <= 12; i++) {
-    const labels = ["SUN", "DEC", "Apple", "NeXT", "HP", "Compaq", "Lenovo", "sgi", "Atari", "Commodore", "IBM"];
+    const labels = ['SUN', 'DEC', 'Apple', 'NeXT', 'HP', 'Compaq', 'Lenovo', 'sgi', 'Atari', 'Commodore', 'IBM']
     const randomIndex = Math.floor(Math.random() * labels.length)
     const label = labels[randomIndex]
 
     const barSize = Math.floor(Math.random() * 80)
     const barOffset = Math.floor(Math.random() * (100 - barSize))
     const setupData = {
-        label: label,
+        label,
         value: Math.floor(Math.random() * 1000),
         percentage: barSize,
-        barOffset: barOffset,
-        barSize: barSize,
+        barOffset,
+        barSize,
         barColor1: getRandomColor(),
         barColor2: getRandomColor()
     }
