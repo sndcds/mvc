@@ -1,18 +1,15 @@
 import View from './view.js'
 import Controller from './controller.js'
 import Component from './component.js'
-import TestComponent from './testcomponent.js'
+//import TestComponent from './testcomponent.js'
 
 
 export default class App extends Controller {
-
     constructor(model, view) {
         super(model, view)
     }
 
-
-    init(url, id) {
-
+    initApp(url, id) {
         this.data = this.model.getStorage('data')
         this.districtId = this.model.getStorage('districtId')
 
@@ -27,15 +24,16 @@ export default class App extends Controller {
             this.fetchData(url)
         }
         else {
-            // this.onDataChanged(this.data)    // TODO
+            this.onDataChanged(this.data)
         }
     }
-
 
     onDataChanged = (data) => {
         this.model.setDataObject(data)
         this.model.setDistrictObject(this.model.districtId)
-        // this.view.renderDataLoading(this.model.data)
+
+        const temp = {'data': this.model.data, 'districtId': this.model.districtId}
+        this.setProperties('districtSelect', temp)
     }
 
     onDistrictChanged = (id) => {

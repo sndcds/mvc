@@ -5,6 +5,9 @@ import Model from './model.js'
 import View from './view.js'
 import Component from './component.js'
 import TestComponent from './testcomponent.js'
+import DistrictSelectComponent from './districtSelectComponent.js'
+import PopComponent from './popComponent.js'
+import GridComponent from './gridComponent.js'
 
 
 
@@ -13,32 +16,44 @@ import TestComponent from './testcomponent.js'
 const model = new AppModel()
 const view = new View()
 
-const chartA = new Component(view, 'chartA', 'age_0_to_under_8')
+const chartA = new GridComponent(view, 'chartA')
+new PopComponent(chartA, 'button1')
+new Component(chartA, 'button2')
+new Component(chartA, 'button3')
+const x = new GridComponent(chartA, 'buttonX')
+new Component(x, 'button4')
+new TestComponent(x, 'button4')
+new TestComponent(x, 'button4')
+new TestComponent(x, 'button4')
+
 const chartB = new Component(view, 'chartB')
+// new PopComponent(chartA, 'pop')
+new DistrictSelectComponent(chartB, 'districtSelect')
+new Component(chartB, 'button1')
 
-new Component(chartA, 'button1')
-new Component(chartB, 'button2')
-new Component(chartB, 'button3')
-new Component(chartB, 'button4')
 
-const chartC = new Component(view, 'chartC')
+const chartC = new GridComponent(view, 'chartC')
 
-for (let i = 0; i < 9; i++) {
-    new TestComponent(chartC, 'component-' + i)
+for (let i = 0; i < 2000; i++) {
+    new PopComponent(chartC, 'component-' + i)
 }
 
 const app = new App(model, view)
 
-app.init('./details.json', 13)
-
 app.buildView('root')
+app.initApp('./details.json', 13)
 
-app.sendMessage("Hello Component")
-app.sendMessageToComponent('button3', "News")
+const c = app.componentById('districtSelect')
 
-app.updateProperties('component-4', {"color": "#048", "width": 100, "flag": true })
-app.updateProperties('component-6', {"color": "#965", "width": 100, "flag": true })
-app.updateProperties('component-987', {"color": "#a93", "width": 100, "flag": true })
+const htmlString = "<div id='foo'><a href='#'>Link</a><span></span></div>"
 
-const c = app.componentById('component-3')
-console.log(c.id)
+// c.renderView(model.templateData)
+// app.sendMessage("Hello Component")
+// app.sendMessageToComponent('button3', "News")
+/*
+app.setProperties('component-4', {"color": "#048", "width": 100, "flag": true })
+app.setProperties('component-6', {"color": "#965", "width": 100, "flag": true })
+app.setProperties('component-987', {"color": "#a93", "width": 100, "flag": true })
+*/
+// const c = app.componentById('component-3')
+// console.log(c.id)

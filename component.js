@@ -2,7 +2,6 @@ import View from './view.js'
 
 
 export default class Component {
-
     constructor(parent, id, dataSrc) {
         this.e = null           // The DOM element.
         this.id = id            // Identifier, a string.
@@ -12,7 +11,6 @@ export default class Component {
             parent.childs.push(this)
         }
     }
-
 
     // Build the DOM element(s).
     // This method has to be overriden by derived classes.
@@ -52,29 +50,13 @@ export default class Component {
     }
 
 
-    // Tell component and all descendants, that they need to update.
-    needsUpdateAll(data) {
-        this.e.innerHtml = 'hello';
-        console.log("component update: " + this.id)
-        this.needsUpdateAllChilds(data)
-    }
-
-
-    // Tell all descendants, that they need to update.
-    needsUpdateAllChilds(data) {
-        this.childs.forEach(child => {
-            child.needsUpdateAll(data)
-        })
-    }
-
-
     bindEventHandler(eventType, handler) {
         // Prototyp, does nothing.
     }
 
 
     // Receives a message and forces descendants to receive it.
-    consumeMessage(message) {
+    setMessage(message) {
         if (this.e) {
             if (this.childs.length < 1)
                 this.e.innerHTML = '<h2>' + message + '</h2><p>' + this.id + '</p>';
@@ -82,15 +64,15 @@ export default class Component {
         }
 
         this.childs.forEach(item => {
-            item.consumeMessage(message)
+            item.setMessage(message)
         })
     }
 
 
-    consumeJsonObject(jsonObject) {
+    setProperties(data) {
         // console.log(jsonObject)
         if (this.e) {
-            this.e.style.backgroundColor = jsonObject.color;
+            this.e.style.backgroundColor = data.color;
         }
     }
 

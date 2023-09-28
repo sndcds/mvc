@@ -38,9 +38,9 @@ app.buildView('root')
 app.sendMessage("Hello Component")
 app.sendMessageToComponent('button3', "News")
 
-app.updateProperties('component-4', '{"color": "#048", "width": 100, "flag": true }')
-app.updateProperties('component-6', '{"color": "#965", "width": 100, "flag": true }')
-app.updateProperties('component-987', '{"color": "#a93", "width": 100, "flag": true }')
+app.setProperties('component-4', '{"color": "#048", "width": 100, "flag": true }')
+app.setProperties('component-6', '{"color": "#965", "width": 100, "flag": true }')
+app.setProperties('component-987', '{"color": "#a93", "width": 100, "flag": true }')
 
 const c = app.componentById('component-3')
 console.log(c.id)
