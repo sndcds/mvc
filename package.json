@@ -37,7 +37,7 @@
     "url": "https://github.com/sndcds/mvc/issues"
   },
   "homepage": "https://soundcodes.grain.one",
-  "source": "src/examples/index.html",
+  "source": "src/example/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel serve --no-cache",
