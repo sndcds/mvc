@@ -1,6 +1,19 @@
 # mvc
 First try to write our own MVC in JavaScript.
 
+
+### Install
+
+```js
+pnpm install @sndcds/mvc
+```
+
+
+### Examples
+
+[https://github.com/sndcds/mvc-example](https://github.com/sndcds/mvc-example)
+
+
 ### Basic functionality
 
 - Create one or more views related to `<div>` elements in your HTML using their id attributes.
