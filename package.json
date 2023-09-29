@@ -1,4 +1,42 @@
 {
+  "name": "@sndcds/mvc",
+  "version": "0.0.2",
+  "private": false,
+  "description": "Experimental Generative MVC Library",
+  "module": "src/index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sndcds/mvc.git"
+  },
+  "files": [
+    "src/lib",
+    "src/index.js",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "library",
+    "framework",
+    "reactive",
+    "mvc",
+    "js",
+    "es6",
+    "view",
+    "controller",
+    "model",
+    "web-framework",
+    "lightweight-mvc-framework",
+    "generative",
+    "javascript"
+  ],
+  "author": "Roald Christesen",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/sndcds/mvc/issues"
+  },
+  "homepage": "https://soundcodes.grain.one",
   "source": "src/examples/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
@@ -10,8 +48,8 @@
     "staticPath": "static"
   },
   "devDependencies": {
-    "eslint": "8.50.0",
     "@parcel/config-default": "^2.9.3",
+    "eslint": "8.50.0",
     "parcel": "latest",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "postcss": "^8.4.30",
