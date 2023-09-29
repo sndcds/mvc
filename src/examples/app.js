@@ -1,6 +1,4 @@
-import View from '../lib/view.js'
-import Controller from '../lib/controller.js'
-import Component from '../lib/component.js'
+import { View, Controller, Component } from '../index.js'
 
 
 export default class App extends Controller {

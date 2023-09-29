@@ -1,4 +1,4 @@
-import Component from '../lib/component.js'
+import { Component } from '../index.js'
 
 
 export default class TestComponent extends Component {

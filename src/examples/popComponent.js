@@ -1,6 +1,5 @@
-import Component from '../lib/component.js'
+import { Component } from '../index.js'
 
-// Comp
 
 export default class PopComponent extends Component {
     /**

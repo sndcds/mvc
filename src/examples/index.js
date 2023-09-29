@@ -4,7 +4,7 @@ import TestComponent from './testcomponent.js'
 import DistrictSelectComponent from './districtSelectComponent.js'
 import PopComponent from './popComponent.js'
 
-export default {
+export {
     App,
     AppModel,
     TestComponent,

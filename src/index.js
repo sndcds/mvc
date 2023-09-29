@@ -4,7 +4,7 @@ import Controller from './lib/controller.js'
 import Component from './lib/component.js'
 import GridComponent from './lib/gridComponent.js'
 
-export default {
+export {
     Model,
     View,
     Controller,
