@@ -94,11 +94,13 @@ export default class Component {
     }
 
     setProperties(data) {
-        const propertyNames = this.propertyNames()
-        if (data !== undefined && propertyNames !== undefined) {
-            for (const prop of this.propertyNames()) {
-                if (data[prop] !== undefined) {
-                    this[prop] = data[prop];
+        if (data !== undefined) {
+            const propertyNames = this.propertyNames()
+            if (propertyNames !== undefined) {
+                for (const prop of this.propertyNames()) {
+                    if (data[prop] !== undefined) {
+                        this[prop] = data[prop];
+                    }
                 }
             }
         }

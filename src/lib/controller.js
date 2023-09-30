@@ -11,8 +11,15 @@ export default class Controller {
     }
 
     configurate(data) {
+        const propertyNames = ['decimalSeparator']
 
-
+        if (data !== undefined) {
+            for (const prop of this.propertyNames()) {
+                if (data[prop] !== undefined) {
+                    this[prop] = data[prop];
+                }
+            }
+        }
     }
 
     buildView(elementId) {
