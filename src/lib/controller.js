@@ -7,7 +7,7 @@ export default class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
-        this.locale = 'de-DE'
+        this.locale = 'en-US'
     }
 
     configurate(data) {
