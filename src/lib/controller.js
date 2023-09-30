@@ -64,14 +64,13 @@ export default class Controller {
             .then((response) => response.json())
             .then((data) => {
                 // Update the model with the fetched data
-                this.onDataChanged(data)
+                if (this.state !== null) {
+                    this.state.onDataChanged(data)
+                }
             })
             .catch((error) => {
                 console.error('Error fetching data:', error)
             })
-    }
-
-    onDataChanged(data) {
     }
 
     formatNumber(number, locale, minFractionDigits, maxFractionDigits) {
