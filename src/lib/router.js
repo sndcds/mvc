@@ -1,4 +1,4 @@
-export default class Controller {
+export default class Router {
     constructor(routes, controllers) {
         this.routes = routes
         this.controllers = controllers
