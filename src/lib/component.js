@@ -28,7 +28,6 @@ export default class Component {
     build() {
         if (this.parent) {
             this.e = this.domCreateElement('div')
-            // console.log("create id:" + this.id + ", e:" + this.e)
             this.parent.e.appendChild(this.e)
         }
         this.buildChilds()
@@ -81,6 +80,7 @@ export default class Component {
 
     // Receives a message and forces descendants to receive it.
     setMessage(message) {
+        // TODO: Must be implemented!
         if (this.e) {
             if (this.childs.length < 1) {
                 this.e.innerHTML = `<h2>'${message}'</h2><p>'${this.id}'</p>`

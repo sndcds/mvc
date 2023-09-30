@@ -7,14 +7,14 @@ export default class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
-        this.decimalSeparator = '.'
+        this.locale = 'de-DE'
     }
 
     configurate(data) {
-        const propertyNames = ['decimalSeparator']
+        const propertyNames = ['locale']
 
         if (data !== undefined) {
-            for (const prop of this.propertyNames()) {
+            for (const prop of propertyNames) {
                 if (data[prop] !== undefined) {
                     this[prop] = data[prop]
                 }
@@ -66,12 +66,28 @@ export default class Controller {
     onDataChanged(data) {
     }
 
-    formatNumberWithDot(x) {
-        if (typeof x === 'undefined') {
+    formatNumber(number, locale, minFractionDigits, maxFractionDigits) {
+        if (typeof number === 'undefined') {
             return undefined
         }
         else {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.decimalSeparator)
+            let usedLocale = this.locale
+            if (locale !== undefined) {
+                usedLocale = locale
+            }
+
+            if (minFractionDigits === undefined) {
+                minFractionDigits = 2
+            }
+            if (maxFractionDigits === undefined) {
+                maxFractionDigits = 2
+            }
+
+            return number.toLocaleString(usedLocale, {
+                style: 'decimal',
+                minimumFractionDigits: minFractionDigits,
+                maximumFractionDigits: maxFractionDigits
+            })
         }
     }
 
