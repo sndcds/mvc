@@ -1,5 +1,6 @@
 export default class Router {
-    constructor(routes, controllers) {
+    constructor(app, routes, controllers) {
+        this.app = app
         this.routes = routes
         this.controllers = controllers
     }
@@ -28,7 +29,7 @@ export default class Router {
         const controller = this.controllers[controllerName]
 
         if (typeof controller === 'function') {
-            controller()
+            controller(this.app)
         }
         else {
             console.error('Controller is not a function:', controller)

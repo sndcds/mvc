@@ -7,6 +7,8 @@ export default class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
+        this.state = null
+
         this.locale = 'en-US'
         this.minFractionDigits = 0
         this.maxFractionDigits = 2
@@ -22,6 +24,10 @@ export default class Controller {
                 }
             }
         }
+    }
+
+    setState(state) {
+        this.state = state
     }
 
     buildView(elementId) {
