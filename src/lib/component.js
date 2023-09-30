@@ -41,6 +41,24 @@ export default class Component {
         })
     }
 
+    /**
+     *  Get property names.
+     *
+     *  @return An array with property names or undefined, if no properties exist.
+     */
+    propertyNames(customPropertyNames) {
+        const propertyNames = ['id', 'group', 'tag' ]
+
+        if (customPropertyNames !== undefined) {
+            return propertyNames.concat(customPropertyNames)
+        }
+        else {
+            return propertyNames
+        }
+    }
+
+
+
     componentById(id) {
         if (id === this.id) {
             return this
@@ -76,9 +94,13 @@ export default class Component {
     }
 
     setProperties(data) {
-        // console.log(jsonObject)
-        if (this.e) {
-            this.e.style.backgroundColor = data.color
+        const propertyNames = this.propertyNames()
+        if (data !== undefined && propertyNames !== undefined) {
+            for (const prop of this.propertyNames()) {
+                if (data[prop] !== undefined) {
+                    this[prop] = data[prop];
+                }
+            }
         }
     }
 
@@ -101,10 +123,15 @@ export default class Component {
         return document.querySelector(selector)
     }
 
-
+    /**
+     * Returns a prfixed CSS class name.
+     *
+     * @param {String} className The class name.
+     * @return {String} The prefixed class name.
+     */
     prefixedClassName(className) {
         if (this.classPrefix !== undefined) {
-            return `${this.classPrefix}_${className}`   // TODO: ES6 literal
+            return `${this.classPrefix}_${className}`
         }
         else {
             return className

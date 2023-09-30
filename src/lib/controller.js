@@ -7,6 +7,12 @@ export default class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
+        this.decimalSeparator = '.'
+    }
+
+    configurate(data) {
+
+
     }
 
     buildView(elementId) {
@@ -55,7 +61,7 @@ export default class Controller {
 
     formatNumberWithDot(x) {
         if (typeof x === 'undefined') {
-            return x
+            return undefined
         }
 
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
