@@ -5,16 +5,15 @@ export default class Component {
     constructor(parent, id, setupData) {
         this.e = null           // The DOM element.
         this.id = id            // Identifier, a string.
-        this.group = undefined  // A group identifier, a string.
-        this.tag = undefined    // A tag, for custom use.
+        this.group = null       // A group identifier, a string.
+        this.tag = null         // A tag, for custom use.
         this.parent = parent    // The parent component, can be null if this is a root component.
         this.childs = []        // Array with the cilds of this component.
+        this.classPrefix = null
 
         if (parent) {
             parent.childs.push(this)
         }
-
-        this.classPrefix = undefined
 
         if (setupData !== undefined) {
             if (setupData.classPrefix !== undefined) {
@@ -121,7 +120,7 @@ export default class Component {
      * @return {String} The prefixed class name.
      */
     prefixedClassName(className) {
-        if (this.classPrefix !== undefined) {
+        if (this.classPrefix !== null) {
             return `${this.classPrefix}_${className}`
         }
         else {

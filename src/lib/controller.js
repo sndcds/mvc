@@ -8,10 +8,12 @@ export default class Controller {
         this.model = model
         this.view = view
         this.locale = 'en-US'
+        this.minFractionDigits = 0
+        this.maxFractionDigits = 2
     }
 
     configurate(data) {
-        const propertyNames = ['locale']
+        const propertyNames = ['locale', 'minFractionDigits', 'maxFractionDigits']
 
         if (data !== undefined) {
             for (const prop of propertyNames) {
@@ -77,10 +79,10 @@ export default class Controller {
             }
 
             if (minFractionDigits === undefined) {
-                minFractionDigits = 2
+                minFractionDigits = this.minFractionDigits
             }
             if (maxFractionDigits === undefined) {
-                maxFractionDigits = 2
+                maxFractionDigits = this.maxFractionDigits
             }
 
             return number.toLocaleString(usedLocale, {
