@@ -64,33 +64,22 @@ export default class Component {
         }
 
         let component
+
         this.childs.every((child) => {
             component = child.componentById(id)
+
             if (typeof component === 'object' && component.id === id) {
                 return false
             }
+
             return true
         })
-        return component
-    }
 
-    bindEventHandler(eventType, handler) {
-        // Prototyp, does nothing.
+        return component
     }
 
     // Receives a message and forces descendants to receive it.
     setMessage(message) {
-        // TODO: Must be implemented!
-        if (this.e) {
-            if (this.childs.length < 1) {
-                this.e.innerHTML = `<h2>'${message}'</h2><p>'${this.id}'</p>`
-            }
-            this.e.style.backgroundColor = '#f8a'
-        }
-
-        this.childs.forEach((item) => {
-            item.setMessage(message)
-        })
     }
 
     setProperties(data) {
