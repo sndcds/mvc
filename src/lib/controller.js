@@ -16,7 +16,7 @@ export default class Controller {
         if (data !== undefined) {
             for (const prop of this.propertyNames()) {
                 if (data[prop] !== undefined) {
-                    this[prop] = data[prop];
+                    this[prop] = data[prop]
                 }
             }
         }
@@ -70,8 +70,9 @@ export default class Controller {
         if (typeof x === 'undefined') {
             return undefined
         }
-
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+        else {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, this.decimalSeparator)
+        }
     }
 
     hasAttribute(obj, attributeName) {

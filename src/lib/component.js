@@ -47,7 +47,7 @@ export default class Component {
      *  @return An array with property names or undefined, if no properties exist.
      */
     propertyNames(customPropertyNames) {
-        const propertyNames = ['id', 'group', 'tag' ]
+        const propertyNames = ['id', 'group', 'tag']
 
         if (customPropertyNames !== undefined) {
             return propertyNames.concat(customPropertyNames)
@@ -99,7 +99,7 @@ export default class Component {
             if (propertyNames !== undefined) {
                 for (const prop of this.propertyNames()) {
                     if (data[prop] !== undefined) {
-                        this[prop] = data[prop];
+                        this[prop] = data[prop]
                     }
                 }
             }
