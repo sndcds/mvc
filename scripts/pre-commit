@@ -2,12 +2,10 @@ pnpm link --dir ./node_modules/@eslint
 
 pnpm lint
 
-npm --no-git-tag-version version patch
-
 git stash -q --keep-index
 
-git stash pop -q
+npm --no-git-tag-version version patch
+
+git stash pop
 
 git add package.json
-
-pnpm publish

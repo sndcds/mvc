@@ -1,10 +1,6 @@
 {
   "name": "@sndcds/mvc",
-<<<<<<< Updated upstream
-  "version": "0.0.16",
-=======
-  "version": "0.0.15",
->>>>>>> Stashed changes
+  "version": "0.0.20",
   "private": false,
   "description": "Experimental Generative MVC Library",
   "module": "src/index.js",
@@ -44,11 +40,12 @@
   "source": "src/example/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "pnpm clean && parcel serve --no-cache",
+    "start": "pnpm clean && parcel serve",
     "publish": "npm publish --access=public",
-    "prepare": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'Pre commit hook copied'",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
+    "preinstall": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'Pre commit hook copied'",
     "clean": "rm -rf dist .parcel-cache ./node_modules",
-    "build": "parcel build --public-url '.' --no-cache",
+    "build": "pnpm clean && parcel build --public-url '.'",
     "lint": "pnpm exec eslint src"
   },
   "staticFiles": {
