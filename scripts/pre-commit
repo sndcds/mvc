@@ -21,14 +21,16 @@ done
 
 # Check if a new tag was not found and take action
 if [ -n "$new_tag" ]; then
-    echo "1"
+    echo "pre-commit 1"
 fi
 
 if [ ! -z "$(git status --porcelain)" ]; then
-    echo "2"
+    echo "pre-commit 2"
 fi
 
 if [ -n "$new_tag" ] && [ ! -z "$(git status --porcelain)" ]; then
+    echo "pre-commit 3"
+
     pnpm link --dir ./node_modules/@eslint
 
     pnpm lint
