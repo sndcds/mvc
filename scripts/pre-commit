@@ -1,7 +1,8 @@
-if [ -z $(git status --porcelain) ];
-then
-    echo git status
+#!/bin/bash
 
+set -e  # Exit the script if any command fails
+
+if [ -z "$(git status --porcelain)" ]; then
     pnpm link --dir ./node_modules/@eslint
 
     pnpm lint
@@ -13,4 +14,6 @@ then
     git stash pop 
 
     git add package.json
+else
+    echo "There are uncommitted changes in the repository."
 fi
