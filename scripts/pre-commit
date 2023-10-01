@@ -2,7 +2,7 @@
 
 set -e  # Exit the script if any command fails
 
-if [ -z "$(git status --porcelain)" ]; then
+if [ ! -z "$(git status --porcelain)" ]; then
     pnpm link --dir ./node_modules/@eslint
 
     pnpm lint
