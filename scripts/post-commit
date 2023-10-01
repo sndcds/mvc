@@ -33,4 +33,6 @@ fi
 
 if [ -n "$new_tag" ] && [ -z "$(git status --porcelain)" ] && [ "$(git branch --show-current)" == 'main' ]; then
     npm publish --access=public
+
+    git push && git push --tag
 fi
