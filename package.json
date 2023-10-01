@@ -1,6 +1,6 @@
 {
   "name": "@sndcds/mvc",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": false,
   "description": "Experimental Generative MVC Library",
   "module": "src/index.js",
@@ -43,7 +43,7 @@
     "start": "pnpm clean && parcel serve",
     "publish": "npm publish --access=public",
     "preinstall": "cp scripts/* .git/hooks/ && chmod +x .git/hooks/post-commit .git/hooks/pre-commit",
-    "clean": "rm -rf dist .parcel-cache ./node_modules",
+    "clean": "rm -rf dist .parcel-cache",
     "build": "pnpm clean && parcel build --public-url '.'",
     "lint": "pnpm exec eslint src"
   },
