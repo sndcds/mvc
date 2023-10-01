@@ -19,15 +19,9 @@ export default class StateController {
     onDataChanged(data) {
     }
 
-    onDistrictChanged(id) {
-    }
-
     buildView() {
     }
 
     renderView() {
-    }
-
-    renderDistrictSelect() {
     }
 }
