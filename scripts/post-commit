@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e  # Exit the script if any command fails
+
 # Initialize a variable to store the new tag (if found)
 new_tag=""
 
