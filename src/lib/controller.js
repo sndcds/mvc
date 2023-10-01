@@ -54,6 +54,12 @@ export default class Controller {
         }
     }
 
+    /**
+     *  Set properties for a single component.
+     *
+     *  @param (int) compnentId The id of the component to change.
+     *  @param (object) The properties to change.
+     */
     setProperties(componentId, data) {
         const component = this.view.componentById(componentId)
 
