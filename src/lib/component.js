@@ -9,16 +9,10 @@ export default class Component {
         this.tag = null         // A tag, for custom use.
         this.parent = parent    // The parent component, can be null if this is a root component.
         this.childs = []        // Array with the cilds of this component.
-        this.classPrefix = null
+        this.classPrefix = null // CSS class prefix
 
         if (parent) {
             parent.childs.push(this)
-        }
-
-        if (setupData !== undefined) {
-            if (setupData.classPrefix !== undefined) {
-                this.classPrefix = setupData.classPrefix
-            }
         }
     }
 
@@ -40,12 +34,13 @@ export default class Component {
     }
 
     /**
-     *  Get property names.
+     * Get property names.
      *
-     *  @return An array with property names or undefined, if no properties exist.
+     * @param {array} customPropertyNames - An array with the names of a derived class
+     * @return {array} An array with property names or undefined, if no properties exist.
      */
     propertyNames(customPropertyNames) {
-        const propertyNames = ['id', 'group', 'tag']
+        const propertyNames = ['id', 'group', 'tag', 'classPrefix']
 
         if (customPropertyNames !== undefined) {
             return propertyNames.concat(customPropertyNames)
@@ -53,48 +48,6 @@ export default class Component {
         else {
             return propertyNames
         }
-    }
-
-    componentById(id) {
-        if (id === this.id) {
-            return this
-        }
-
-        let component
-
-        this.childs.every((child) => {
-            component = child.componentById(id)
-
-            if (typeof component === 'object' && component.id === id) {
-                return false
-            }
-
-            return true
-        })
-
-        return component
-    }
-
-    /**
-     * Count all descendants.
-     *
-     * Descendants are children, grandchildren, and so on.
-     *
-     * @returns Number of descendants.
-     */
-    countDescendants() {
-        let n = 0
-        for (const child of this.childs) {
-            console.log(child.id)
-            n += child.countDescendants()
-        }
-
-        return n
-    }
-
-
-    // Receives a message and forces descendants to receive it.
-    setMessage(message) {
     }
 
     setProperties(data) {
@@ -125,12 +78,54 @@ export default class Component {
         // The component can reflect the changes in its visual representation.
     }
 
+
+    componentById(id) {
+        if (id === this.id) {
+            return this
+        }
+
+        let component
+
+        this.childs.every((child) => {
+            component = child.componentById(id)
+
+            if (typeof component === 'object' && component.id === id) {
+                return false
+            }
+
+            return true
+        })
+
+        return component
+    }
+
+    /**
+     * Count all descendant components.
+     *
+     * Descendants are children, grandchildren, and so on.
+     *
+     * @returns {number} Number of descendants.
+     */
+    countDescendants() {
+        let n = 0
+        for (const child of this.childs) {
+            n += child.countDescendants() + 1
+        }
+        console.log(n)
+        console.log(typeof n)
+        return n
+    }
+
+    // Receives a message and forces descendants to receive it.
+    setMessage(message) {
+    }
+
     /**
      * Create a DOM element with an optional CSS class.
      *
-     * @param {string} tag - The first number.
-     * @param {string, array} classNames - One class name or a list of clas names.
-     * @returns {number} The sum of num1 and num2.
+     * @param {string} tag - The HTML tag to be created.
+     * @param {string, array} classNames - A single class name as string or an array with class names.
+     * @returns {object} The DOM element.
      */
     domCreateElement(tag, classNames) {
         const element = document.createElement(tag)
@@ -143,6 +138,19 @@ export default class Component {
             })
         }
         return element
+    }
+
+    /**
+     * Add a DOM element with an optional CSS class.
+     *
+     * @param {string} tag - The HTML tag to be created.
+     * @param {string, array} classNames - A single class name as string or an array with class names.
+     * @returns {object} The DOM element.
+     */
+    addDomElement(tag, classNames) {
+        this.e = this.domCreateElement(tag, classNames)
+        this.parent.e.appendChild(this.e)
+        return this.e
     }
 
     // Remove an element from the DOM.
@@ -158,12 +166,12 @@ export default class Component {
     /**
      * Returns a prefixed CSS class name.
      *
-     * @param {string} className The class name.
+     * @param {string} className - The class name.
      * @return {string} The prefixed class name.
      */
     prefixedClassName(className) {
         if (this.classPrefix !== null) {
-            return `${this.classPrefix}_${className}`
+            return `${this.classPrefix}${className}`
         }
         else {
             return className

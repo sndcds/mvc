@@ -1,6 +1,6 @@
 {
   "name": "@sndcds/mvc",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "private": false,
   "description": "Experimental Generative MVC Library",
   "module": "src/index.js",
