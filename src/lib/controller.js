@@ -79,6 +79,11 @@ export default class Controller {
         }
     }
 
+    /**
+     *  Fetch data from URL.
+     *
+     *  @param (string) url URL to the data source.
+     */
     fetchData(url) {
         // Make an API request using fetch or XMLHttpRequest
         fetch(url)
