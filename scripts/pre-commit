@@ -15,5 +15,5 @@ if [ ! -z "$(git status --porcelain)" ]; then
 
     git add package.json
 else
-    echo "There are uncommitted changes in the repository."
+    echo "There are uncommitted changes in the repository"
 fi
