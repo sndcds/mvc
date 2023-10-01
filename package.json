@@ -1,6 +1,6 @@
 {
   "name": "@sndcds/mvc",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "private": false,
   "description": "Experimental Generative MVC Library",
   "module": "src/index.js",
@@ -45,9 +45,6 @@
     "preinstall": "cp scripts/* .git/hooks/ && chmod +x .git/hooks/post-commit .git/hooks/pre-commit",
     "build": "pnpm clean && parcel build --public-url '.'",
     "lint": "pnpm exec eslint src"
-  },
-  "staticFiles": {
-    "staticPath": "static"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",
