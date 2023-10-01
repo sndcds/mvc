@@ -39,6 +39,11 @@ export default class Controller {
         this.view.build(elementId)
     }
 
+    /**
+     *  Get a component by id.
+     *
+     *  @param (string) id Id of component to get.
+     */
     componentById(id) {
         return this.view.componentById(id)
     }
