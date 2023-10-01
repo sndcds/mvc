@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/sndcds/mvc.git"
   },
+  "hooks": {
+    "pre-commit": "npm lint && npm --no-git-tag-version version patch && git add package.json && npm publish"
+  },
   "files": [
     "src/lib",
     "src/index.js",
@@ -41,6 +44,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel serve --no-cache",
+    "publish": "npm publish --access=public",
     "build": "parcel build --public-url '.' --no-cache",
     "lint": "pnpm exec eslint src"
   },
