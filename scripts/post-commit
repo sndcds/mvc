@@ -1,4 +1,4 @@
-if [ -z $(git branch --show-current == 'main') ];
+if [ "$(git branch --show-current)" == 'main' ];
 then
     pnpm publish
 
