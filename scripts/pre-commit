@@ -1,11 +1,19 @@
-pnpm link --dir ./node_modules/@eslint
+#!/bin/bash
 
-pnpm lint
+set -e  # Exit the script if any command fails
 
-git stash -q --keep-index
+if [ -z "$(git status --porcelain)" ]; then
+    pnpm link --dir ./node_modules/@eslint
 
-npm --no-git-tag-version version patch
+    pnpm lint
 
-git stash pop
+    git stash -q --keep-index
 
-git add package.json
+    npm --no-git-tag-version version patch
+
+    git stash pop 
+
+    git add package.json
+else
+    echo "There are uncommitted changes in the repository."
+fi
