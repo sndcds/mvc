@@ -32,7 +32,7 @@ fi
 
 if [ -n "$new_tag" ] && [ -z "$(git status --porcelain)" ] && [ "$(git branch --show-current)" == 'main' ]; then
     echo "post-commit 4"
-    pnpm publish
+    npm publish --access=public
 
     PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
 
