@@ -22,12 +22,16 @@ if [ -n "$new_tag" ]; then
     echo "post-commit 1"
 fi
 
-if [ ! -z "$(git status --porcelain)" ]; then
+if  [ -z "$(git status --porcelain)" ]; then
     echo "post-commit 2"
 fi
 
-if [ -n "$new_tag" ] && [ ! -z "$(git status --porcelain)" ]; then
+if [ "$(git branch --show-current)" == 'main' ]; then
     echo "post-commit 3"
+fi
+
+if [ -n "$new_tag" ] && [ -z "$(git status --porcelain)" ] && [ "$(git branch --show-current)" == 'main' ]; then
+    echo "post-commit 4"
     pnpm publish
 
     PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
