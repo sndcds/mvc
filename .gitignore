@@ -1,6 +1,7 @@
 node_modules/
 .parcel-cache/
 example/
+static/
 dist/
 .DS_Store
 .env
