@@ -13,7 +13,6 @@ tags_in_head=$(git for-each-ref --format "%(refname:short)" refs/tags --contains
 for tag in $all_tags; do
     if [[ "$tags_in_head" != *"$tag"* ]]; then
         new_tag="$tag"
-        echo "New local tag found: $new_tag"
     fi
 done
 
