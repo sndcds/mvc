@@ -30,6 +30,10 @@ export default class Controller {
         this.state = state
     }
 
+    /**
+     *  Build the DOM elements
+     *
+     */
     buildView(elementId) {
         this.view.build(elementId)
     }

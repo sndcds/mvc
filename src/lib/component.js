@@ -75,6 +75,24 @@ export default class Component {
         return component
     }
 
+    /**
+     * Count all descendants.
+     *
+     * Descendants are children, grandchildren, and so on.
+     *
+     * @returns Number of descendants.
+     */
+    countDescendants() {
+        let n = 0
+        for (const child of this.childs) {
+            console.log(child.id)
+            n += child.countDescendants()
+        }
+
+        return n
+    }
+
+
     // Receives a message and forces descendants to receive it.
     setMessage(message) {
     }
