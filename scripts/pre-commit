@@ -1,11 +1,16 @@
-pnpm link --dir ./node_modules/@eslint
+if [ -z $(git status --porcelain) ];
+then
+    echo git status
 
-pnpm lint
+    pnpm link --dir ./node_modules/@eslint
 
-git stash -q --keep-index
+    pnpm lint
 
-npm --no-git-tag-version version patch
+    git stash -q --keep-index
 
-git stash pop
+    npm --no-git-tag-version version patch
 
-git add package.json
+    git stash pop 
+
+    git add package.json
+fi
