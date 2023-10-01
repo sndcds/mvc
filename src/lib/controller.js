@@ -64,6 +64,7 @@ export default class Controller {
             .then((response) => response.json())
             .then((data) => {
                 // Update the model with the fetched data
+                // Muss aufgerufen werden, wenn Daten geladen und temporär in einem Object gespeichert werden
                 if (this.state !== null) {
                     this.state.onDataChanged(data)
                 }

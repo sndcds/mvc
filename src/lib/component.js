@@ -55,8 +55,6 @@ export default class Component {
         }
     }
 
-
-
     componentById(id) {
         if (id === this.id) {
             return this
