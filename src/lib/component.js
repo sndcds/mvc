@@ -80,23 +80,49 @@ export default class Component {
     }
 
     setProperties(data) {
+        let changed = false
+
         if (data !== undefined) {
             const propertyNames = this.propertyNames()
             if (propertyNames !== undefined) {
                 for (const prop of this.propertyNames()) {
                     if (data[prop] !== undefined) {
                         this[prop] = data[prop]
+                        changed = true
                     }
                 }
             }
         }
+
+        if (changed === true) {
+            this.propertiesChanged()
+        }
     }
 
-    // Create an element with an optional CSS class.
-    domCreateElement(tag, className) {  // TODO: Can this be declared as static?
+    /**
+     * Update component when properties are changed.
+     */
+    propertiesChanged() {
+        // This method will be called, when properties changed.
+        // The component can reflect the changes in its visual representation.
+    }
+
+    /**
+     * Create a DOM element with an optional CSS class.
+     *
+     * @param {string} tag - The first number.
+     * @param {string, array} classNames - One class name or a list of clas names.
+     * @returns {number} The sum of num1 and num2.
+     */
+    domCreateElement(tag, classNames) {
         const element = document.createElement(tag)
-        if (className) {
-            element.classList.add(className)
+        if (classNames === 'string') {
+            element.classList.add(classNames)
+        }
+        else if (classNames instanceof Array) {
+            classNames.forEach(function (className) {
+                element.classList.add(className)
+            })
         }
         return element
     }
@@ -112,10 +138,10 @@ export default class Component {
     }
 
     /**
-     * Returns a prfixed CSS class name.
+     * Returns a prefixed CSS class name.
      *
-     * @param {String} className The class name.
-     * @return {String} The prefixed class name.
+     * @param {string} className The class name.
+     * @return {string} The prefixed class name.
      */
     prefixedClassName(className) {
         if (this.classPrefix !== null) {
