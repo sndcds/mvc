@@ -6,8 +6,8 @@ npm --no-git-tag-version version patch
 
 git stash -q --keep-index
 
-pnpm publish
-
 git stash pop -q
 
 git add package.json
+
+pnpm publish
