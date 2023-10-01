@@ -33,6 +33,7 @@ export default class Controller {
     /**
      *  Build the DOM elements
      *
+     *  @param (string) elementId Id of DOM element, which is the root.
      */
     buildView(elementId) {
         this.view.build(elementId)
