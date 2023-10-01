@@ -15,7 +15,6 @@ tags_in_head=$(git for-each-ref --format "%(refname:short)" refs/tags --contains
 for tag in $all_tags; do
     if [[ "$tags_in_head" != *"$tag"* ]]; then
         new_tag="$tag"
-        echo "New local tag found: $new_tag"
     fi
 done
 
@@ -29,8 +28,6 @@ if [ ! -z "$(git status --porcelain)" ]; then
 fi
 
 if [ -n "$new_tag" ] && [ ! -z "$(git status --porcelain)" ]; then
-    echo "pre-commit 3"
-
     pnpm link --dir ./node_modules/@eslint
 
     pnpm lint
@@ -38,6 +35,10 @@ if [ -n "$new_tag" ] && [ ! -z "$(git status --porcelain)" ]; then
     git stash -q --keep-index
 
     npm --no-git-tag-version version patch
+
+    PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+
+    git tag v$PACKAGE_VERSION
 
     git stash pop 
 
