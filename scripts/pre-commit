@@ -2,10 +2,33 @@
 
 set -e  # Exit the script if any command fails
 
-# Get the list of tags reachable from HEAD
-tags_in_head="$(git rev-list --tags --max-count=1)"
+# Initialize a variable to store the new tag (if found)
+new_tag=""
 
-if [ -z "$tags_in_head" ] && [ ! -z "$(git status --porcelain)" ]; then
+# Get the list of all local Git tags
+all_tags=$(git tag -l)
+
+# Get the list of tags associated with the current HEAD
+tags_in_head=$(git for-each-ref --format "%(refname:short)" refs/tags --contains HEAD)
+
+# Iterate through all local tags and check if they are in HEAD
+for tag in $all_tags; do
+    if [[ "$tags_in_head" != *"$tag"* ]]; then
+        new_tag="$tag"
+        echo "New local tag found: $new_tag"
+    fi
+done
+
+# Check if a new tag was not found and take action
+if [ ! -n "$new_tag" ]; then
+    echo "1"
+fi
+
+if [ ! -z "$(git status --porcelain)" ]; then
+    echo "2"
+fi
+
+if [ ! -n "$new_tag" ] && [ ! -z "$(git status --porcelain)" ]; then
     pnpm link --dir ./node_modules/@eslint
 
     pnpm lint
