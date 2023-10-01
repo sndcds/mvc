@@ -1,6 +1,10 @@
 {
   "name": "@sndcds/mvc",
-  "version": "0.0.8",
+<<<<<<< Updated upstream
+  "version": "0.0.16",
+=======
+  "version": "0.0.15",
+>>>>>>> Stashed changes
   "private": false,
   "description": "Experimental Generative MVC Library",
   "module": "src/index.js",
@@ -8,9 +12,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sndcds/mvc.git"
-  },
-  "hooks": {
-    "pre-commit": "npm lint && npm --no-git-tag-version version patch && git add package.json && npm publish"
   },
   "files": [
     "src/lib",
@@ -43,8 +44,10 @@
   "source": "src/example/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel serve --no-cache",
+    "start": "pnpm clean && parcel serve --no-cache",
     "publish": "npm publish --access=public",
+    "prepare": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'Pre commit hook copied'",
+    "clean": "rm -rf dist .parcel-cache ./node_modules",
     "build": "parcel build --public-url '.' --no-cache",
     "lint": "pnpm exec eslint src"
   },
