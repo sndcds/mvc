@@ -26,6 +26,11 @@ export default class Controller {
         }
     }
 
+    /**
+     *  Set new controller state
+     *
+     *  @param (class) state The new state to be activated.
+     */
     setState(state) {
         this.state = state
     }
