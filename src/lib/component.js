@@ -187,5 +187,8 @@ export default class Component {
                 }
             })
         }
+        else {
+            e.classList.add(this.defaultClass())
+        }
     }
 }
