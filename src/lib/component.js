@@ -182,8 +182,13 @@ export default class Component {
             const classNames = classList.split(' ')
 
             classNames.forEach((className) => {
-                if (!e.classList.contains(className)) {
-                    e.classList.add(className)
+                className = className.trim()
+
+                // TODO: Use try catch
+                if (className !== '') {
+                    if (!e.classList.contains(className)) {
+                        e.classList.add(className)
+                    }
                 }
             })
         }
