@@ -9,20 +9,25 @@ export default class Component {
         this.tag = null         // A tag, for custom use.
         this.parent = parent    // The parent component, can be null if this is a root component.
         this.childs = []        // Array with the cilds of this component.
-        this.classPrefix = null // CSS class prefix
+        this.classPrefix = null // DOM class prefix, used in combination with standard class if no class(es) are provided.
+        this.classList = null   // Comma separated list of DOM element class names.
 
         if (parent) {
             parent.childs.push(this)
         }
     }
 
+    /**
+     * Get the default class name.
+     * @returns {string} The default class name.
+     */
+    defaultClass() {
+        return 'sc-component'
+    }
+
     // Build the DOM element(s).
     // This method has to be overriden by derived classes.
     build() {
-        if (this.parent) {
-            this.e = this.domCreateElement('div')
-            this.parent.e.appendChild(this.e)
-        }
         this.buildChilds()
     }
 
@@ -40,7 +45,7 @@ export default class Component {
      * @return {array} An array with property names or undefined, if no properties exist.
      */
     propertyNames(customPropertyNames) {
-        const propertyNames = ['id', 'group', 'tag', 'classPrefix']
+        const propertyNames = ['id', 'group', 'tag', 'classPrefix', 'classList']
 
         if (customPropertyNames !== undefined) {
             return propertyNames.concat(customPropertyNames)
@@ -111,8 +116,6 @@ export default class Component {
         for (const child of this.childs) {
             n += child.countDescendants() + 1
         }
-        console.log(n)
-        console.log(typeof n)
         return n
     }
 
@@ -124,32 +127,23 @@ export default class Component {
      * Create a DOM element with an optional CSS class.
      *
      * @param {string} tag - The HTML tag to be created.
-     * @param {string, array} classNames - A single class name as string or an array with class names.
      * @returns {object} The DOM element.
      */
-    domCreateElement(tag, classNames) {
-        const element = document.createElement(tag)
-        if (classNames === 'string') {
-            element.classList.add(classNames)
-        }
-        else if (classNames instanceof Array) {
-            classNames.forEach(function (className) {
-                element.classList.add(className)
-            })
-        }
-        return element
+    domCreateElement(tag) {
+        return document.createElement(tag)
     }
 
     /**
      * Add a DOM element with an optional CSS class.
      *
      * @param {string} tag - The HTML tag to be created.
-     * @param {string, array} classNames - A single class name as string or an array with class names.
      * @returns {object} The DOM element.
      */
-    addDomElement(tag, classNames) {
-        this.e = this.domCreateElement(tag, classNames)
+    addDomElement(tag) {
+        this.e = this.domCreateElement(tag)
+        this.domAddClasses(this.e, this.classList)
         this.parent.e.appendChild(this.e)
+
         return this.e
     }
 
@@ -175,6 +169,23 @@ export default class Component {
         }
         else {
             return className
+        }
+    }
+
+    /**
+     * Helper method for adding classes to an DOM element.
+     *
+     * @param {string} classList - One ore more class names separated with spaces.
+     */
+    domAddClasses(e, classList) {
+        if (classList !== undefined && classList !== null) {
+            const classNames = classList.split(' ')
+
+            classNames.forEach((className) => {
+                if (!e.classList.contains(className)) {
+                    e.classList.add(className)
+                }
+            })
         }
     }
 }
