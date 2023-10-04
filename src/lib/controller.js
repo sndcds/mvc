@@ -94,6 +94,9 @@ export default class Controller {
                 if (this.state !== null) {
                     this.state.onDataChanged(data)
                 }
+                else {
+                    this.onDataChanged(data)
+                }
             })
             .catch((error) => {
                 console.error('Error fetching data:', error)
@@ -123,25 +126,5 @@ export default class Controller {
                 maximumFractionDigits: maxFractionDigits
             })
         }
-    }
-
-    hasAttribute(obj, attributeName) {
-        return typeof obj === 'object' && obj !== null && attributeName in obj
-    }
-
-    getNestedValue(data, path) {
-        let value = data
-
-        for (const key of path) {
-            if (this.hasAttribute(value, key)) {
-                value = value[key]
-            }
-            else {
-                value = undefined
-                break
-            }
-        }
-
-        return value
     }
 }
