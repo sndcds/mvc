@@ -57,6 +57,7 @@ export default class Component {
 
     setProperties(data) {
         let changed = false
+
         if (data !== undefined) {
             const propertyNames = this.propertyNames()
             if (propertyNames !== undefined) {
@@ -68,6 +69,7 @@ export default class Component {
                 }
             }
         }
+
         if (changed === true) {
             this.propertiesChanged()
         }
