@@ -7,7 +7,7 @@ export default class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
-        this.state = null
+        this.context = null
 
         this.locale = 'en-US'
         this.minFractionDigits = 0
@@ -27,12 +27,12 @@ export default class Controller {
     }
 
     /**
-     *  Set new controller state
+     *  Set new controller context
      *
-     *  @param (class) state The new state to be activated.
+     *  @param (class) context The new context to be activated.
      */
-    setState(state) {
-        this.state = state
+    setContext(context) {
+        this.context = context
     }
 
     /**
@@ -91,8 +91,8 @@ export default class Controller {
             .then((data) => {
                 // Update the model with the fetched data
                 // Muss aufgerufen werden, wenn Daten geladen und temporär in einem Object gespeichert werden
-                if (this.state !== null) {
-                    this.state.onDataChanged(data)
+                if (this.context !== null) {
+                    this.context.onDataChanged(data)
                 }
                 else {
                     this.onDataChanged(data)
@@ -103,13 +103,21 @@ export default class Controller {
             })
     }
 
+    /**
+     *  Formats a number for display
+     *
+     *  @param (number) number The number to format.
+     *  @param (string) locale An optional locale, i.e. 'us/EN' or 'de/DE'.
+     *  @param (int) minFractionDigits An optional number for the minium number of digits.
+     *  @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     */
     formatNumber(number, locale, minFractionDigits, maxFractionDigits) {
-        if (typeof number === 'undefined') {
+        if (typeof number === 'undefined' || number === null) {
             return undefined
         }
         else {
             let usedLocale = this.locale
-            if (locale !== undefined) {
+            if (typeof locale === 'string') {
                 usedLocale = locale
             }
 
@@ -126,5 +134,21 @@ export default class Controller {
                 maximumFractionDigits: maxFractionDigits
             })
         }
+    }
+
+    /**
+     *  Converts a float to a string with a maximum of fractional digits.
+     *
+     *  @param (number) number The number to convert.
+     *  @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     */
+    static numberToString(number, maxFractionDigits) {
+        if (number === undefined || number === null) {
+            return ''
+        }
+        if (maxFractionDigits === undefined) {
+            maxFractionDigits = 2
+        }
+        return parseFloat(number.toFixed(maxFractionDigits))
     }
 }
