@@ -104,15 +104,15 @@ export default class Controller {
     }
 
     /**
-     * Formats a number for display
+     * Formats a value for display
      *
-     * @param (number) number The number to format.
+     * @param (number) value The value to format.
      * @param (string) locale An optional locale, i.e. 'us/EN' or 'de/DE'.
-     * @param (int) minFractionDigits An optional number for the minium number of digits.
-     * @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     * @param (int) minFractionDigits An optional value for the minium amount of digits.
+     * @param (int) maxFractionDigits An optional value for the maxium amount of digits.
      */
-    formatNumber(number, locale, minFractionDigits, maxFractionDigits) {
-        if (typeof number === 'undefined' || number === null) {
+    formatNumber(value, locale, minFractionDigits, maxFractionDigits) {
+        if (typeof value === 'undefined' || value === null) {
             return undefined
         }
         else {
@@ -128,7 +128,7 @@ export default class Controller {
                 maxFractionDigits = this.maxFractionDigits
             }
 
-            return number.toLocaleString(usedLocale, {
+            return value.toLocaleString(usedLocale, {
                 style: 'decimal',
                 minimumFractionDigits: minFractionDigits,
                 maximumFractionDigits: maxFractionDigits
@@ -139,16 +139,16 @@ export default class Controller {
     /**
      * Converts a float to a string with a maximum of fractional digits.
      *
-     * @param (number) number The number to convert.
-     * @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     * @param (number) value The value to convert.
+     * @param (int) maxFractionDigits An optional value for the maxium amount of digits.
      */
-    static numberToString(number, maxFractionDigits) {
-        if (number === undefined || number === null) {
+    static numberToString(value, maxFractionDigits) {
+        if (value === undefined || value === null) {
             return ''
         }
         if (maxFractionDigits === undefined) {
             maxFractionDigits = 2
         }
-        return parseFloat(number.toFixed(maxFractionDigits))
+        return parseFloat(value.toFixed(maxFractionDigits))
     }
 }
