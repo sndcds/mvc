@@ -27,27 +27,27 @@ export default class Controller {
     }
 
     /**
-     *  Set new controller context
+     * Set new controller context
      *
-     *  @param (class) context The new context to be activated.
+     * @param (class) context The new context to be activated.
      */
     setContext(context) {
         this.context = context
     }
 
     /**
-     *  Build the DOM elements
+     * Build the DOM elements
      *
-     *  @param (string) elementId Id of DOM element, which is the root.
+     * @param (string) elementId Id of DOM element, which is the root.
      */
     buildView(elementId) {
         this.view.build(elementId)
     }
 
     /**
-     *  Get a component by id.
+     * Get a component by id.
      *
-     *  @param (string) id Id of component to get.
+     * @param (string) id Id of component to get.
      */
     componentById(id) {
         return this.view.componentById(id)
@@ -66,10 +66,10 @@ export default class Controller {
     }
 
     /**
-     *  Set properties for a single component.
+     * Set properties for a single component.
      *
-     *  @param (int) compnentId The id of the component to change.
-     *  @param (object) The properties to change.
+     * @param (int) compnentId The id of the component to change.
+     * @param (object) data The properties to change.
      */
     setProperties(componentId, data) {
         const component = this.view.componentById(componentId)
@@ -80,9 +80,9 @@ export default class Controller {
     }
 
     /**
-     *  Fetch data from URL.
+     * Fetch data from URL.
      *
-     *  @param (string) url URL to the data source.
+     * @param (string) url URL to the data source.
      */
     fetchData(url) {
         // Make an API request using fetch or XMLHttpRequest
@@ -104,12 +104,12 @@ export default class Controller {
     }
 
     /**
-     *  Formats a number for display
+     * Formats a number for display
      *
-     *  @param (number) number The number to format.
-     *  @param (string) locale An optional locale, i.e. 'us/EN' or 'de/DE'.
-     *  @param (int) minFractionDigits An optional number for the minium number of digits.
-     *  @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     * @param (number) number The number to format.
+     * @param (string) locale An optional locale, i.e. 'us/EN' or 'de/DE'.
+     * @param (int) minFractionDigits An optional number for the minium number of digits.
+     * @param (int) maxFractionDigits An optional number for the maxium number of digits.
      */
     formatNumber(number, locale, minFractionDigits, maxFractionDigits) {
         if (typeof number === 'undefined' || number === null) {
@@ -137,10 +137,10 @@ export default class Controller {
     }
 
     /**
-     *  Converts a float to a string with a maximum of fractional digits.
+     * Converts a float to a string with a maximum of fractional digits.
      *
-     *  @param (number) number The number to convert.
-     *  @param (int) maxFractionDigits An optional number for the maxium number of digits.
+     * @param (number) number The number to convert.
+     * @param (int) maxFractionDigits An optional number for the maxium number of digits.
      */
     static numberToString(number, maxFractionDigits) {
         if (number === undefined || number === null) {
