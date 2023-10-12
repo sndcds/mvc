@@ -1,8 +1,8 @@
-export default class StateController {
+export default class ContextController {
     constructor(app) {
         this.app = app
 
-        app.state = this    // App must know the state controller.
+        app.context = this    // App must know the context controller.
 
         this.buildView()
         this.checkData()

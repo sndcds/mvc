@@ -4,12 +4,11 @@ import View from './view.js'
 export default class Component {
     constructor(parent, id, setupData) {
         this.e = null           // The DOM element.
-        this.id = id            // Identifier, a string.
+        this.id = id            // Identifier, a string.  TODO: rename to uid
         this.group = null       // A group identifier, a string.
         this.tag = null         // A tag, for custom use.
         this.parent = parent    // The parent component, can be null if this is a root component.
         this.childs = []        // Array with the cilds of this component.
-        this.classPrefix = null // DOM class prefix, used in combination with standard class if no class(es) are provided.
         this.classList = null   // Comma separated list of DOM element class names.
 
         if (parent) {
@@ -18,20 +17,16 @@ export default class Component {
     }
 
     /**
-     * Get the default class name.
-     * @returns {string} The default class name.
+     *  Build the DOM element(s).
+     *  This method has to be overriden by derived classes.
      */
-    defaultClass() {
-        return 'sc-component'
-    }
-
-    // Build the DOM element(s).
-    // This method has to be overriden by derived classes.
     build() {
         this.buildChilds()
     }
 
-    // Build all descendants.
+    /**
+     * Build all descendants.
+     */
     buildChilds() {
         this.childs.forEach((child) => {
             child.build()
@@ -45,7 +40,7 @@ export default class Component {
      * @return {array} An array with property names or undefined, if no properties exist.
      */
     propertyNames(customPropertyNames) {
-        const propertyNames = ['id', 'group', 'tag', 'classPrefix', 'classList']
+        const propertyNames = ['id', 'group', 'tag', 'classList']
 
         if (customPropertyNames !== undefined) {
             return propertyNames.concat(customPropertyNames)
@@ -158,21 +153,6 @@ export default class Component {
     }
 
     /**
-     * Returns a prefixed CSS class name.
-     *
-     * @param {string} className - The class name.
-     * @return {string} The prefixed class name.
-     */
-    prefixedClassName(className) {
-        if (this.classPrefix !== null) {
-            return `${this.classPrefix}${className}`
-        }
-        else {
-            return className
-        }
-    }
-
-    /**
      * Helper method for adding classes to an DOM element.
      *
      * @param {string} classList - One ore more class names separated with spaces.
@@ -191,9 +171,6 @@ export default class Component {
                     }
                 }
             })
-        }
-        else {
-            e.classList.add(this.defaultClass())
         }
     }
 }
