@@ -8,71 +8,52 @@ export default class Controller {
         this.model = model
         this.view = view
         this.context = null
-
         this.locale = 'en-US'
         this.minFractionDigits = 0
         this.maxFractionDigits = 2
     }
 
+    /**
+     * Configurate the behavior of the controller.
+     * Derivated controllers can define their own properties by overriding the method propertyNames.
+     *
+     * @param {object} data - Configuration data as object with key/value pairs.
+     */
     configurate(data) {
-        const propertyNames = ['locale', 'minFractionDigits', 'maxFractionDigits']
-
-        if (data !== undefined) {
-            for (const prop of propertyNames) {
-                if (data[prop] !== undefined) {
-                    this[prop] = data[prop]
+        if (typeof data === 'object') {
+            for (const propertyName of this.getPropertyNames()) {
+                if (data[propertyName] !== undefined) {
+                    this[propertyName] = data[propertyName]
                 }
             }
         }
     }
 
     /**
-     * Set new controller context
+     * Get property names.
      *
-     * @param (class) context The new context to be activated.
+     * @param {array} customPropertyNames - An array with the names of a derived class.
+     * @return {array} An array with property names or undefined, if no properties exist.
      */
-    setContext(context) {
-        this.context = context
-    }
+    getPropertyNames(customPropertyNames) {
+        const propertyNames = ['locale', 'minFractionDigits', 'maxFractionDigits']
 
-    /**
-     * Build the DOM elements
-     *
-     * @param (string) elementId Id of DOM element, which is the root.
-     */
-    buildView(elementId) {
-        this.view.build(elementId)
-    }
-
-    /**
-     * Get a component by id.
-     *
-     * @param (string) id Id of component to get.
-     */
-    componentById(id) {
-        return this.view.componentById(id)
-    }
-
-    sendMessage(message) {
-        this.view.setMessage(message)
-    }
-
-    sendMessageToComponent(componentId, message) {
-        const component = this.view.componentById(componentId)
-
-        if (typeof component === 'object') {
-            component.setMessage(message)
+        if (customPropertyNames !== undefined) {
+            return propertyNames.concat(customPropertyNames)
+        }
+        else {
+            return propertyNames
         }
     }
 
     /**
      * Set properties for a single component.
      *
-     * @param (int) compnentId The id of the component to change.
-     * @param (object) data The properties to change.
+     * @param {int} id - The id of the component to change.
+     * @param {object} data - The properties to change.
      */
-    setProperties(componentId, data) {
-        const component = this.view.componentById(componentId)
+    setProperties(id, data) {
+        const component = this.view.getComponentById(id)
 
         if (typeof component === 'object') {
             component.setProperties(data)
@@ -80,9 +61,59 @@ export default class Controller {
     }
 
     /**
+     * Set new controller context.
+     *
+     * @param {class} context - The new context to be activated.
+     */
+    setContext(context) {
+        this.context = context
+    }
+
+    /**
+     * Build the DOM elements.
+     *
+     * @param {string} selector - DOM selector to the element, where to mount the app.
+     */
+    buildView(selector) {
+        this.view.buildDOM(selector)
+    }
+
+    /**
+     * Get a component by id.
+     *
+     * @param {string} id - Id of component to get.
+     */
+    getComponentById(id) {
+        return this.view.getComponentById(id)
+    }
+
+    /**
+     * Send a message to the current view.
+     *
+     * @param {any} message - The component is responsible for the interpretation of the message.
+     */
+    sendMessageToView(message) {
+        this.view.handleMessage(message)
+    }
+
+    /**
+     * Send a message to a specific component.
+     *
+     * @param {string} id - The id of the component, which should receive the message.
+     * @param {any} message - The component is responsible for the interpretation of the message.
+     */
+    sendMessageToComponent(id, message) {
+        const component = this.view.getComponentById(id)
+
+        if (typeof component === 'object') {
+            component.handleMessage(message)
+        }
+    }
+
+    /**
      * Fetch data from URL.
      *
-     * @param (string) url URL to the data source.
+     * @param {string} url - URL to the data source.
      */
     fetchData(url) {
         // Make an API request using fetch or XMLHttpRequest
@@ -106,10 +137,10 @@ export default class Controller {
     /**
      * Formats a value for display
      *
-     * @param (number) value The value to format.
-     * @param (string) locale An optional locale, i.e. 'us/EN' or 'de/DE'.
-     * @param (int) minFractionDigits An optional value for the minium amount of digits.
-     * @param (int) maxFractionDigits An optional value for the maxium amount of digits.
+     * @param {number} value - The value to format.
+     * @param {string} locale - An optional locale, i.e. 'us/EN' or 'de/DE'.
+     * @param {int} minFractionDigits - An optional value for the minium amount of digits.
+     * @param {int} maxFractionDigits - An optional value for the maxium amount of digits.
      */
     formatNumber(value, locale, minFractionDigits, maxFractionDigits) {
         if (typeof value === 'undefined' || value === null) {
@@ -117,6 +148,7 @@ export default class Controller {
         }
         else {
             let usedLocale = this.locale
+
             if (typeof locale === 'string') {
                 usedLocale = locale
             }
@@ -124,6 +156,7 @@ export default class Controller {
             if (minFractionDigits === undefined) {
                 minFractionDigits = this.minFractionDigits
             }
+
             if (maxFractionDigits === undefined) {
                 maxFractionDigits = this.maxFractionDigits
             }
@@ -139,16 +172,19 @@ export default class Controller {
     /**
      * Converts a float to a string with a maximum of fractional digits.
      *
-     * @param (number) value The value to convert.
-     * @param (int) maxFractionDigits An optional value for the maxium amount of digits.
+     * @param {number} value - The value to convert.
+     * @param {int} maxFractionDigits - An optional value for the maxium amount of decimal digits.
+     * @return {string} A string representing the number with specified decimal digits.
      */
     static numberToString(value, maxFractionDigits) {
         if (value === undefined || value === null) {
             return ''
         }
+
         if (maxFractionDigits === undefined) {
             maxFractionDigits = 2
         }
+
         return parseFloat(value.toFixed(maxFractionDigits))
     }
 }
