@@ -11,6 +11,7 @@ export default class Controller {
         this.locale = 'en-US'
         this.minFractionDigits = 0
         this.maxFractionDigits = 2
+        this.router = null
     }
 
     /**
