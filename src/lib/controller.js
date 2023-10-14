@@ -112,11 +112,11 @@ export default class Controller {
     }
 
     /**
-     * Fetch data from URL.
+     * Fetch json data from URL.
      *
      * @param {string} url - URL to the data source.
      */
-    fetchData(url) {
+    fetchJsonData(url) {
         // Make an API request using fetch or XMLHttpRequest
         fetch(url)
             .then((response) => response.json())
