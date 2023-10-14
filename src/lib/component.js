@@ -12,6 +12,7 @@ export default class Component {
         this.classList = null       // Comma separated list of DOM element class names.
         this.events = null          // Events, that should be handled by this component.
         this.eventMode = 'default'  // The mode, in which event handlers should be created.
+        this.routeName = null       // Name for routing.
 
         // Add component to parent.
         if (parent) {
@@ -46,7 +47,12 @@ export default class Component {
         // Add event handlers, only in 'default' mode.
         if (this.eventMode === 'default' && this.events !== null) {
             this.events.forEach((event) => {
-                this.e.addEventListener(event.type, () => event.handler(this))
+                if (typeof event.handler === 'function') {
+                    this.e.addEventListener(event.type, () => event.handler(this))
+                }
+                else if (typeof event.handler === 'object') {
+                    this.e.addEventListener(event.type, () => event.handler.handleEvent(this))
+                }
             })
         }
 
@@ -70,7 +76,7 @@ export default class Component {
      * @return {array} An array with property names or undefined, if no properties exist.
      */
     getPropertyNames(customPropertyNames) {
-        const propertyNames = ['id', 'group', 'tag', 'classList', 'events', 'eventMode']
+        const propertyNames = ['id', 'group', 'tag', 'classList', 'events', 'eventMode', 'routeName']
 
         if (customPropertyNames !== undefined) {
             return propertyNames.concat(customPropertyNames)

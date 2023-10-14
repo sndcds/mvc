@@ -1,11 +1,10 @@
 export default class ContextController {
     constructor(app) {
         this.app = app
+        this.model = null
+        this.view = null
 
         app.context = this    // App must know the context controller.
-
-        this.buildView()
-        this.checkData()
     }
 
     checkData() {
@@ -19,9 +18,11 @@ export default class ContextController {
     onDataChanged(data) {
     }
 
-    buildView() {
+    prepareView() {
+
     }
 
-    renderView() {
+    buildView(selector) {
+        this.view.buildDOM(selector)
     }
 }
