@@ -112,22 +112,22 @@ export default class Controller {
     }
 
     /**
-     * Fetch json data from URL.
+     * Fetch JSON data from URL.
      *
      * @param {string} url - URL to the data source.
+     * @param {any} identifier - Property which handlers can use to identify the type of data.
      */
-    fetchJsonData(url) {
+    fetchJsonData(url, identifier) {
         // Make an API request using fetch or XMLHttpRequest
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                // Update the model with the fetched data
-                // Muss aufgerufen werden, wenn Daten geladen und temporär in einem Object gespeichert werden
+                // Update the model with the fetched data.
                 if (this.context !== null) {
-                    this.context.onDataChanged(data)
+                    this.context.onDataChanged(data, identifier)
                 }
                 else {
-                    this.onDataChanged(data)
+                    this.onDataChanged(data, identifier)
                 }
             })
             .catch((error) => {

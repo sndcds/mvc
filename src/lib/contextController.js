@@ -7,7 +7,13 @@ export default class ContextController {
         app.context = this    // App must know the context controller.
     }
 
-    onDataChanged(data) {
+    /**
+     * Handling of new data.
+     *
+     * @param {object} data - The data to handle, typically a JavaScript object.
+     * @param {any} identifier - Property which handlers can use to identify the type of data.
+     */
+    onDataChanged(data, idendifier) {
     }
 
     prepareView() {
