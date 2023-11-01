@@ -1,7 +1,15 @@
 import View from './view.js'
 
-
-export default class Component {
+/**
+ * Class representing a abstract view.
+ */
+export class Component {
+    /**
+     * Create an abstract view component.
+     * @param {object} parent - The parent component object.
+     * @param {string} id - The id should be a unique string idetifier.
+     * @param {object} setupData - Deprecated paramenter will be removed in future.
+     */
     constructor(parent, id, setupData) {
         this.e = null               // The DOM element representing this component on the HTML page.
         this.id = id                // An identifier, a string which gives access to the component.

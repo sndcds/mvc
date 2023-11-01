@@ -1,4 +1,11 @@
-export default class ContextController {
+/**
+ * Class representing a controller for a context.
+ */
+export class ContextController {
+    /**
+     * Create a context controller.
+     * @param {object} app - The app object.
+     */
     constructor(app) {
         this.app = app
         this.model = null

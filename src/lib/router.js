@@ -1,4 +1,12 @@
-export default class Router {
+/**
+ * Class representing a router to handle contexts.
+ */
+export class Router {
+    /**
+     * Create a dot.
+     * @param {object} app - The app object.
+     * @param {object} routes - The routes object.
+     */
     constructor(app, routes) {
         this.app = app
         this.routes = routes

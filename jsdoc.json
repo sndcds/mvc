@@ -1,0 +1,35 @@
+{
+  "tags": {
+    "allowUnknownTags": ["category"]
+  },
+  "source": {
+    "include": ["./src"],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|docs)"
+  },
+  "plugins": ["node_modules/better-docs/category"],
+  "opts": {
+    "encoding": "utf8",
+    "destination": "docs/",
+    "readme": "README.md",
+    "recurse": true,
+    "verbose": true,
+    "template": "node_modules/better-docs"
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "search": false,
+    "better-docs": {
+      "name": "Generative MVC",
+      "title": "Generative MVC Library",
+      "hideGenerator": true,
+      "navLinks": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/sndcds/mvc"
+        }
+      ]
+    }
+  }
+}
