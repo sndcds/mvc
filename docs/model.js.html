@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generative MVC Library view.js</title>
+  <title>Generative MVC Library model.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -89,7 +89,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>view.js</h1>
+                    <h1>model.js</h1>
                 </header>
                 
 
@@ -98,30 +98,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Component from './component.js'
-
-/**
- * Class representing a specific view.
- * @extends Component
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing a model.
  */
-export class View extends Component {
+export class Model {
+    /* eslint no-useless-constructor: 0 */
     constructor() {
-        super()
-
-        this.parent = null
     }
 
-    /**
-     * Build Document from all components, starting from the view.
-     *
-     * @param {string} selector - DOM selector to the element, where to mount the app.
-     */
-    buildDOM(selector) {
-        this.e = this.getDomElement(selector)
+    getStorage(key) {
+        return JSON.parse(localStorage.getItem(key))
+    }
 
-        if (this.e !== null) {
-            this.buildChilds()
-        }
+    setStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data))
+    }
+
+    clearStorage(key) {
+        localStorage.removeItem(key)
     }
 }</code></pre>
         </article>

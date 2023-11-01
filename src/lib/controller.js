@@ -2,8 +2,15 @@ import Model from './model.js'
 import View from './view.js'
 import Component from './component.js'
 
-
-export default class Controller {
+/**
+ * Class representing a Controller.
+ */
+export class Controller {
+    /**
+     * Create a controller.
+     * @param {object} model - The model object.
+     * @param {object} view - The view object.
+     */
     constructor(model, view) {
         this.model = model
         this.view = view

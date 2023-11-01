@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generative MVC Library view.js</title>
+  <title>Generative MVC Library dataObject.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -89,7 +89,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>view.js</h1>
+                    <h1>dataObject.js</h1>
                 </header>
                 
 
@@ -98,30 +98,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Component from './component.js'
-
-/**
- * Class representing a specific view.
- * @extends Component
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing a general data object
  */
-export class View extends Component {
-    constructor() {
-        super()
-
-        this.parent = null
+export class DataObject {
+    /**
+     * Create a data object.
+     * @param {object} data - The data object.
+     */
+    constructor(data) {
+        this.data = data
     }
 
-    /**
-     * Build Document from all components, starting from the view.
-     *
-     * @param {string} selector - DOM selector to the element, where to mount the app.
-     */
-    buildDOM(selector) {
-        this.e = this.getDomElement(selector)
+    hasAttribute(obj, attributeName) {
+        return typeof obj === 'object' &amp;&amp; obj !== null &amp;&amp; attributeName in obj
+    }
 
-        if (this.e !== null) {
-            this.buildChilds()
+    valueByPath(path) {
+        let value = this.data
+
+        for (const key of path) {
+            if (this.hasAttribute(value, key)) {
+                value = value[key]
+            }
+            else {
+                value = undefined
+                break
+            }
         }
+
+        return value
+    }
+
+    filter(condition) {
+        return this.data.filter(condition)
     }
 }</code></pre>
         </article>

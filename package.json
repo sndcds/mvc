@@ -46,6 +46,7 @@
     "lint": "pnpm exec eslint src"
   },
   "devDependencies": {
+    "better-docs": "^2.7.2",
     "eslint": "8.50.0",
     "jsdoc": "^4.0.2",
     "minami": "^1.2.3",

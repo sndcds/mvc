@@ -1,7 +1,10 @@
 import Component from './component.js'
 
-
-export default class View extends Component {
+/**
+ * Class representing a specific view.
+ * @extends Component
+ */
+export class View extends Component {
     constructor() {
         super()
 

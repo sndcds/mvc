@@ -1,4 +1,7 @@
-export default class Model {
+/**
+ * Class representing a model.
+ */
+export class Model {
     /* eslint no-useless-constructor: 0 */
     constructor() {
     }
