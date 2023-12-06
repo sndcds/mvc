@@ -201,7 +201,7 @@ export class Component {
     }
 
     /**
-     * Helper method for adding classes to an DOM element.
+     * Helper method for adding classes to a DOM element.
      *
      * @param {string} classList - One ore more class names separated with spaces.
      */
